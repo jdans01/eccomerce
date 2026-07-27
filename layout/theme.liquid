@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_background }}">
+
+  <title>
+    {{ page_title }}{% if page_title contains shop.name %}{% else %} | {{ shop.name }}{% endif %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- render 'meta-tags' -%}
+  {% if settings.favicon %}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {% endif %}
+
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ settings.type_header_font | font_face: font_display: 'swap' }}
+  {{ settings.type_body_font | font_face: font_display: 'swap' }}
+
+  <style>
+    :root{
+      --color-background: {{ settings.color_background }};
+      --color-background-secondary: {{ settings.color_background_secondary }};
+      --color-text: {{ settings.color_text }};
+      --color-text-light: {{ settings.color_text_light }};
+      --color-border: {{ settings.color_border }};
+      --color-accent: {{ settings.color_accent }};
+      --color-accent-text: {{ settings.color_accent_text }};
+      --color-success: {{ settings.color_success }};
+      --color-error: {{ settings.color_error }};
+      --color-header-bg: {{ settings.color_header_background }};
+      --color-header-text: {{ settings.color_header_text }};
+      --color-footer-bg: {{ settings.color_footer_background }};
+      --color-footer-text: {{ settings.color_footer_text }};
+      --font-heading: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+      --font-heading-weight: {{ settings.type_header_font.weight }};
+      --font-heading-style: {{ settings.type_header_font.style }};
+      --font-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+      --font-body-weight: {{ settings.type_body_font.weight }};
+      --type-header-scale: {{ settings.type_header_scale | default: 100 }}%;
+      --type-body-scale: {{ settings.type_body_scale | default: 100 }}%;
+      --page-width: {{ settings.page_width | default: 1320 }}px;
+      --spacing-sections: {{ settings.spacing_sections | default: 60 }}px;
+      --radius: {{ settings.corner_radius | default: '14px' }};
+    }
+  </style>
+
+  {{ content_for_header }}
+</head>
+<body class="template-{{ request.page_type | handle }}">
+
+  <a class="skip-to-content" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  <div id="page-shell">
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+
+    <main id="MainContent" class="main-content">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+  </div>
+
+  {% render 'cart-drawer' %}
+
+  <div class="drawer-overlay" data-drawer-overlay hidden></div>
+
+  <script>
+    window.themeStrings = {
+      addToCart: {{ 'products.product.add_to_cart' | t | json }},
+      soldOut: {{ 'products.product.sold_out' | t | json }},
+      unavailable: {{ 'products.product.unavailable' | t | json }},
+      adding: {{ 'products.product.adding' | t | json }},
+      remove: {{ 'cart.general.remove' | t | json }},
+      cartEmpty: {{ 'cart.general.empty' | t | json }},
+      continueShopping: {{ 'cart.general.continue_shopping' | t | json }},
+      freeShippingThreshold: {{ settings.cart_free_shipping_threshold | json }},
+      freeShippingRemaining: {{ 'cart.general.free_shipping_remaining' | t | json }},
+      freeShippingUnlocked: {{ 'cart.general.free_shipping_unlocked' | t | json }}
+    };
+  </script>
+  {{ 'theme.js' | asset_url | script_tag }}
+</body>
+</html>

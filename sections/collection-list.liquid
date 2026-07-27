@@ -1,0 +1,60 @@
+<div class="section-padding page-width">
+  <div class="section-header">
+    <div class="section-header__text">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+  </div>
+
+  <div class="collection-grid">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign coll = block.settings.collection
+        assign img = block.settings.image | default: coll.featured_image
+      -%}
+      <a href="{{ coll.url | default: '#' }}" class="collection-card" {{ block.shopify_attributes }}>
+        {%- if img -%}
+          <img src="{{ img | image_url: width: 800 }}" alt="{{ coll.title | escape }}" loading="lazy" width="{{ img.width }}" height="{{ img.height }}">
+        {%- else -%}
+          {{ 'collection-1' | placeholder_svg_tag }}
+        {%- endif -%}
+        <div class="collection-card__scrim"></div>
+        <div class="collection-card__label">
+          <h3>{{ block.settings.title | default: coll.title }}</h3>
+          {%- if coll -%}<span>{{ coll.products_count }} {{ 'general.collections.products' | t }}</span>{%- endif -%}
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lista de colecciones",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Explora" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Compra por categoría" }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Colección",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Colección" },
+        { "type": "text", "id": "title", "label": "Título personalizado" },
+        { "type": "image_picker", "id": "image", "label": "Imagen personalizada" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lista de colecciones",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}

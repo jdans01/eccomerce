@@ -1,0 +1,100 @@
+<footer class="site-footer">
+  <div class="site-footer__grid page-width">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'text' -%}
+          <div class="site-footer__about" {{ block.shopify_attributes }}>
+            <div class="site-footer__heading">{{ block.settings.heading }}</div>
+            <p>{{ block.settings.text }}</p>
+            {%- render 'social-icons' -%}
+          </div>
+
+        {%- when 'link_list' -%}
+          <div {{ block.shopify_attributes }}>
+            <div class="site-footer__heading">{{ block.settings.heading }}</div>
+            <ul class="site-footer__list">
+              {%- for link in linklists[block.settings.menu].links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+
+        {%- when 'newsletter' -%}
+          <div {{ block.shopify_attributes }}>
+            <div class="site-footer__heading">{{ block.settings.heading }}</div>
+            <p>{{ block.settings.text }}</p>
+            {%- form 'customer', id: 'FooterNewsletterForm' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="newsletter-form">
+                <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter.placeholder' | t }}" required aria-label="{{ 'general.newsletter.placeholder' | t }}">
+                <button type="submit" class="btn btn--primary btn--sm">{{ 'general.newsletter.submit' | t }}</button>
+              </div>
+              {%- if form.posted_successfully? -%}
+                <p style="margin-top:10px;font-size:0.85rem;">{{ 'general.newsletter.success' | t }}</p>
+              {%- endif -%}
+            {%- endform -%}
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="site-footer__bottom page-width">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.
+      {%- if section.settings.copyright_text != blank %} {{ section.settings.copyright_text }}{% else %} {{ 'general.footer.rights' | t }}{% endif -%}
+    </span>
+    {%- if section.settings.show_payment_icons -%}
+      <div class="payment-icons">
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_img_url | image_tag: alt: type }}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de página",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Mostrar íconos de pago",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Texto de derechos de autor"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Texto / Acerca de",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Título", "default": "Aurora" },
+        { "type": "textarea", "id": "text", "label": "Texto" }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "Menú",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Título", "default": "Enlaces" },
+        { "type": "link_list", "id": "menu", "label": "Menú", "default": "footer" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Boletín",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Título", "default": "Únete a nuestra lista" },
+        { "type": "textarea", "id": "text", "label": "Texto" }
+      ]
+    }
+  ]
+}
+{% endschema %}

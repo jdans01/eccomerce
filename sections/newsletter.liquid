@@ -1,0 +1,31 @@
+<div class="section-padding page-width">
+  <div class="newsletter-section">
+    {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+    <h2>{{ section.settings.heading }}</h2>
+    <p class="section-subtitle">{{ section.settings.text }}</p>
+    {%- form 'customer', id: 'NewsletterSectionForm' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="newsletter-form">
+        <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter.placeholder' | t }}" required aria-label="{{ 'general.newsletter.placeholder' | t }}">
+        <button type="submit" class="btn btn--primary">{{ 'general.newsletter.submit' | t }}</button>
+      </div>
+      {%- if form.posted_successfully? -%}
+        <p style="margin-top:14px;">{{ 'general.newsletter.success' | t }}</p>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Boletín",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "No te lo pierdas" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Únete a nuestra lista" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Sé el primero en enterarte de lanzamientos, ofertas exclusivas y novedades." }
+  ],
+  "presets": [
+    { "name": "Boletín" }
+  ]
+}
+{% endschema %}

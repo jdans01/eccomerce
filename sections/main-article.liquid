@@ -1,0 +1,35 @@
+<div class="page-width section-padding">
+  <div class="article-body">
+    {%- if article.image -%}
+      <img src="{{ article.image | image_url: width: 1200 }}" alt="{{ article.image.alt | escape }}" style="width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:32px;">
+    {%- endif -%}
+    <div class="article-card__date" style="text-align:center;">{{ article.published_at | date: '%d %B %Y' }} {% if article.author %}· {{ article.author }}{% endif %}</div>
+    <h1 style="text-align:center;margin-bottom:32px;">{{ article.title }}</h1>
+    <div class="rte">{{ article.content }}</div>
+
+    {%- if blog.comments_enabled? -%}
+      <div style="margin-top:48px;border-top:1px solid var(--color-border);padding-top:32px;">
+        <h3>{{ 'blog.comments.title' | t }} ({{ article.comments_count }})</h3>
+        {%- for comment in article.comments -%}
+          <div style="padding:16px 0;border-bottom:1px solid var(--color-border);">
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.content }}</p>
+          </div>
+        {%- endfor -%}
+        {%- form 'new_comment', article -%}
+          {%- if form.posted_successfully? -%}
+            <p class="form-message form-message--success">{{ 'blog.comments.success' | t }}</p>
+          {%- endif -%}
+          <div class="form-field"><label>{{ 'blog.comments.name' | t }}</label><input type="text" name="comment[author]" required></div>
+          <div class="form-field"><label>{{ 'blog.comments.email' | t }}</label><input type="email" name="comment[email]" required></div>
+          <div class="form-field"><label>{{ 'blog.comments.message' | t }}</label><textarea name="comment[body]" rows="4" required></textarea></div>
+          <button type="submit" class="btn btn--primary">{{ 'blog.comments.submit' | t }}</button>
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Artículo", "settings": [] }
+{% endschema %}

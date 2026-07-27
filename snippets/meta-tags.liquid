@@ -1,0 +1,21 @@
+{%- liquid
+  assign og_title = page_title | default: shop.name
+  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_image = page_image | default: settings.favicon
+-%}
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{% if template contains 'product' %}product{% else %}website{% endif %}">
+{%- if og_description -%}
+  <meta property="og:description" content="{{ og_description | escape }}">
+{%- endif -%}
+{%- if og_image -%}
+  <meta property="og:image" content="https:{{ og_image | image_url: width: 1200 }}">
+  <meta property="og:image:width" content="1200">
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | escape }}">
+{%- if og_description -%}
+  <meta name="twitter:description" content="{{ og_description | escape }}">
+{%- endif -%}

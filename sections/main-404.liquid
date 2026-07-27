@@ -1,0 +1,12 @@
+<div class="state-page page-width">
+  <span class="eyebrow">404</span>
+  <h1>{{ 'general.404.title' | t }}</h1>
+  <p class="section-subtitle">{{ 'general.404.text' | t }}</p>
+  <div style="margin-top:24px;">
+    <a href="{{ routes.root_url }}" class="btn btn--primary">{{ 'general.404.button' | t }}</a>
+  </div>
+</div>
+
+{% schema %}
+{ "name": "Página 404", "settings": [] }
+{% endschema %}

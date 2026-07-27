@@ -1,0 +1,104 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Nueva colección — Primavera",
+        "heading": "Diseño consciente para tu día a día",
+        "text": "Piezas atemporales hechas con materiales de calidad, pensadas para durar más que una temporada.",
+        "button_label": "Comprar ahora",
+        "button_link": "shopify://collections/all",
+        "button_label_2": "Ver colecciones",
+        "button_link_2": "shopify://collections"
+      }
+    },
+    "trust": {
+      "type": "icon-row",
+      "blocks": {
+        "b1": { "type": "item", "settings": { "icon": "truck", "text": "Envío gratis desde $75" } },
+        "b2": { "type": "item", "settings": { "icon": "refresh", "text": "Devoluciones gratuitas en 30 días" } },
+        "b3": { "type": "item", "settings": { "icon": "shield", "text": "Pago 100% seguro" } },
+        "b4": { "type": "item", "settings": { "icon": "check", "text": "Calidad garantizada" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Seleccionado para ti",
+        "heading": "Más vendidos",
+        "subheading": "Los favoritos de nuestra comunidad, elegidos por su calidad y diseño.",
+        "collection": "all",
+        "products_to_show": 8
+      }
+    },
+    "collections": {
+      "type": "collection-list",
+      "blocks": {
+        "c1": { "type": "collection", "settings": {} },
+        "c2": { "type": "collection", "settings": {} },
+        "c3": { "type": "collection", "settings": {} }
+      },
+      "block_order": ["c1", "c2", "c3"],
+      "settings": {
+        "eyebrow": "Explora",
+        "heading": "Compra por categoría"
+      }
+    },
+    "story": {
+      "type": "image-with-text",
+      "settings": {
+        "eyebrow": "Nuestra historia",
+        "heading": "Hecho para durar",
+        "text": "Trabajamos con talleres locales y materiales responsables para crear productos honestos, sin atajos ni promesas vacías.",
+        "button_label": "Conoce más",
+        "button_link": "shopify://pages/about-us",
+        "layout": "default"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": { "rating": 5, "quote": "La calidad superó mis expectativas. El envío fue rápido y el producto se ve aún mejor en persona.", "author": "María G." }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": { "rating": 5, "quote": "Excelente atención al cliente y un empaque hermoso. Ya hice mi segundo pedido.", "author": "Carlos R." }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": { "rating": 4, "quote": "Productos duraderos y con un diseño precioso. Totalmente recomendado.", "author": "Sofía L." }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "eyebrow": "Opiniones",
+        "heading": "Lo que dicen nuestros clientes"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "¿Cuánto tarda el envío?", "answer": "<p>Los pedidos se procesan en 1-2 días hábiles y llegan en 3-5 días hábiles dentro del país.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "¿Puedo devolver mi pedido?", "answer": "<p>Sí, aceptamos devoluciones dentro de los 30 días posteriores a la compra, siempre que el producto esté sin usar.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "¿Qué métodos de pago aceptan?", "answer": "<p>Aceptamos las principales tarjetas de crédito y débito, además de otros métodos disponibles en el checkout.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3"],
+      "settings": {
+        "eyebrow": "Ayuda",
+        "heading": "Preguntas frecuentes"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "eyebrow": "No te lo pierdas",
+        "heading": "Únete a nuestra lista",
+        "text": "Sé el primero en enterarte de lanzamientos, ofertas exclusivas y novedades."
+      }
+    }
+  },
+  "order": ["hero", "trust", "featured", "collections", "story", "testimonials", "faq", "newsletter"]
+}

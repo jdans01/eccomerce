@@ -1,0 +1,56 @@
+<div class="hero section-padding{% if section.settings.image == blank %} hero--plain{% endif %}" style="{% if section.settings.min_height %}min-height:{{ section.settings.min_height }}px;{% endif %}">
+  {%- if section.settings.image -%}
+    <div class="hero__media">
+      <img
+        src="{{ section.settings.image | image_url: width: 2000 }}"
+        srcset="{{ section.settings.image | image_url: width: 800 }} 800w, {{ section.settings.image | image_url: width: 1400 }} 1400w, {{ section.settings.image | image_url: width: 2000 }} 2000w"
+        sizes="100vw"
+        alt="{{ section.settings.image.alt | escape }}"
+        width="{{ section.settings.image.width }}"
+        height="{{ section.settings.image.height }}"
+        loading="eager"
+      >
+    </div>
+    <div class="hero__scrim"></div>
+  {%- endif -%}
+
+  <div class="hero__content page-width">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h1>{{ section.settings.heading }}</h1>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <p>{{ section.settings.text }}</p>
+    {%- endif -%}
+    <div class="hero__actions">
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="btn btn--primary">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_label_2 != blank -%}
+        <a href="{{ section.settings.button_link_2 | default: '#' }}" class="btn {% if section.settings.image %}btn--outline-light{% else %}btn--secondary{% endif %}">{{ section.settings.button_label_2 }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen de fondo" },
+    { "type": "range", "id": "min_height", "label": "Altura mínima", "min": 400, "max": 800, "step": 20, "unit": "px", "default": 640 },
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Nueva colección" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Diseño consciente para tu día a día" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Piezas atemporales hechas con materiales de calidad, pensadas para durar." },
+    { "type": "text", "id": "button_label", "label": "Botón principal", "default": "Comprar ahora" },
+    { "type": "url", "id": "button_link", "label": "Enlace del botón principal" },
+    { "type": "text", "id": "button_label_2", "label": "Botón secundario", "default": "Ver colecciones" },
+    { "type": "url", "id": "button_link_2", "label": "Enlace del botón secundario" }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

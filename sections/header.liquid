@@ -1,0 +1,135 @@
+{%- liquid
+  assign menu = section.settings.menu
+-%}
+<header class="site-header{% if section.settings.sticky_header %} is-sticky{% endif %}" data-site-header>
+  <div class="site-header__inner page-width">
+    <button class="site-header__nav-toggle header-icon-btn" data-mobile-nav-toggle aria-label="{{ 'general.accessibility.open_menu' | t }}">
+      {%- render 'icon', name: 'menu' -%}
+    </button>
+
+    <nav class="site-header__nav" aria-label="{{ 'general.navigation.main' | t }}">
+      {%- for link in linklists[menu].links -%}
+        <div class="site-header__nav-item">
+          <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+          {%- if link.links.size > 0 -%}
+            <div class="site-header__submenu">
+              {%- for child in link.links -%}
+                <a href="{{ child.url }}">{{ child.title }}</a>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </nav>
+
+    <a href="{{ routes.root_url }}" class="site-header__logo">
+      {%- if section.settings.logo -%}
+        <img
+          src="{{ section.settings.logo | image_url: width: 400 }}"
+          alt="{{ shop.name }}"
+          width="{{ section.settings.logo_width }}"
+          style="width:{{ section.settings.logo_width }}px;height:auto;"
+          loading="eager"
+        >
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    <div class="site-header__actions">
+      {%- if section.settings.show_search -%}
+        <button class="header-icon-btn" data-search-toggle aria-expanded="false" aria-label="{{ 'general.search.title' | t }}">
+          {%- render 'icon', name: 'search' -%}
+        </button>
+      {%- endif -%}
+      {%- if section.settings.show_account -%}
+        <a href="{{ routes.account_url }}" class="header-icon-btn" aria-label="{{ 'customer.account.title' | t }}">
+          {%- render 'icon', name: 'account' -%}
+        </a>
+      {%- endif -%}
+      <button class="header-icon-btn" data-cart-toggle aria-label="{{ 'cart.general.title' | t }}">
+        {%- render 'icon', name: 'cart' -%}
+        <span class="cart-count-bubble" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+
+  {%- if section.settings.show_search -%}
+    <div class="header-search" data-header-search>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="header-search__form page-width">
+        <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}" autofocus>
+        <input type="hidden" name="type" value="product">
+        <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon', name: 'search' %}</button>
+        <button type="button" data-search-close aria-label="{{ 'general.accessibility.close' | t }}">{% render 'icon', name: 'close' %}</button>
+      </form>
+    </div>
+  {%- endif -%}
+</header>
+
+<div class="mobile-nav" data-mobile-nav>
+  <button class="mobile-nav__close" data-mobile-nav-close aria-label="{{ 'general.accessibility.close' | t }}">
+    {%- render 'icon', name: 'close' -%}
+  </button>
+  <ul class="mobile-nav__list">
+    {%- for link in linklists[menu].links -%}
+      <li>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- if link.links.size > 0 -%}
+          <ul class="mobile-nav__sub">
+            {%- for child in link.links -%}
+              <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+    <li><a href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a></li>
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Encabezado",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Ancho del logo",
+      "min": 80,
+      "max": 260,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Encabezado fijo al hacer scroll",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Mostrar búsqueda",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Mostrar cuenta",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

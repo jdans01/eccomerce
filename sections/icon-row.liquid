@@ -1,0 +1,48 @@
+<div class="section-padding page-width">
+  <div class="product-info__meta" style="justify-content:space-between;border:none;padding:0;">
+    {%- for block in section.blocks -%}
+      <div class="product-info__meta-item" style="font-size:0.95rem;gap:12px;" {{ block.shopify_attributes }}>
+        {%- render 'icon', name: block.settings.icon -%}
+        <span>{{ block.settings.text }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Íconos de confianza",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Elemento",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "truck", "label": "Envío" },
+            { "value": "refresh", "label": "Devolución" },
+            { "value": "shield", "label": "Seguridad" },
+            { "value": "check", "label": "Verificado" }
+          ],
+          "default": "truck"
+        },
+        { "type": "text", "id": "text", "label": "Texto", "default": "Envío gratis desde $75" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Íconos de confianza",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "truck", "text": "Envío gratis desde $75" } },
+        { "type": "item", "settings": { "icon": "refresh", "text": "Devoluciones gratuitas en 30 días" } },
+        { "type": "item", "settings": { "icon": "shield", "text": "Pago 100% seguro" } },
+        { "type": "item", "settings": { "icon": "check", "text": "Calidad garantizada" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

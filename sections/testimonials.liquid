@@ -1,0 +1,53 @@
+<div class="section-padding page-width">
+  <div class="section-header">
+    <div class="section-header__text">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    {%- for block in section.blocks -%}
+      <div class="testimonial-card" {{ block.shopify_attributes }}>
+        <div class="testimonial-card__stars">
+          {%- for i in (1..5) -%}
+            {%- if i <= block.settings.rating -%}{% render 'icon', name: 'star' %}{%- endif -%}
+          {%- endfor -%}
+        </div>
+        <blockquote>“{{ block.settings.quote }}”</blockquote>
+        <div class="testimonial-card__author">{{ block.settings.author }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonios",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Opiniones" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Lo que dicen nuestros clientes" }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonio",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Calificación", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "quote", "label": "Cita", "default": "La calidad superó mis expectativas. El envío fue rápido y el producto se ve aún mejor en persona." },
+        { "type": "text", "id": "author", "label": "Autor", "default": "María G." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonios",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

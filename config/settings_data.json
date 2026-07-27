@@ -1,0 +1,122 @@
+{
+  "current": {
+    "color_background": "#FAF7F2",
+    "color_background_secondary": "#F2EBDD",
+    "color_text": "#1C1B19",
+    "color_text_light": "#6B6459",
+    "color_border": "#E4DCCC",
+    "color_accent": "#C1502E",
+    "color_accent_text": "#FFFFFF",
+    "color_success": "#3F6B4A",
+    "color_error": "#B33A3A",
+    "color_header_background": "#FAF7F2",
+    "color_header_text": "#1C1B19",
+    "color_footer_background": "#1C1B19",
+    "color_footer_text": "#F2EBDD",
+    "type_header_font": "playfair_display_n7",
+    "type_header_scale": 100,
+    "type_body_font": "assistant_n4",
+    "type_body_scale": 100,
+    "page_width": 1320,
+    "spacing_sections": 60,
+    "corner_radius": "14px",
+    "card_image_ratio": "portrait",
+    "card_show_vendor": true,
+    "card_show_quick_add": true,
+    "card_enable_hover_image": true,
+    "cart_type": "drawer",
+    "cart_show_free_shipping": true,
+    "cart_free_shipping_threshold": "75",
+    "social_instagram": "",
+    "social_facebook": "",
+    "social_tiktok": "",
+    "social_pinterest": "",
+    "social_youtube": "",
+    "social_x": "",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "announcement-1": {
+            "type": "announcement",
+            "settings": {
+              "text": "Envío gratis en pedidos superiores a $75",
+              "link": ""
+            }
+          },
+          "announcement-2": {
+            "type": "announcement",
+            "settings": {
+              "text": "Nueva colección disponible — descúbrela ahora",
+              "link": "shopify://collections/all"
+            }
+          },
+          "announcement-3": {
+            "type": "announcement",
+            "settings": {
+              "text": "Devoluciones gratuitas durante 30 días",
+              "link": ""
+            }
+          }
+        },
+        "block_order": ["announcement-1", "announcement-2", "announcement-3"],
+        "settings": {
+          "autorotate": true,
+          "autorotate_speed": 6
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "",
+          "logo_width": 140,
+          "menu": "main-menu",
+          "sticky_header": true,
+          "show_search": true,
+          "show_account": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "about": {
+            "type": "text",
+            "settings": {
+              "heading": "Aurora",
+              "text": "Diseño consciente y materiales de calidad para tu día a día. Hecho para durar, pensado para ti."
+            }
+          },
+          "menu-1": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Tienda",
+              "menu": "footer"
+            }
+          },
+          "menu-2": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Ayuda",
+              "menu": "footer"
+            }
+          },
+          "newsletter": {
+            "type": "newsletter",
+            "settings": {
+              "heading": "Únete a nuestra lista",
+              "text": "Recibe novedades, lanzamientos y ofertas exclusivas."
+            }
+          }
+        },
+        "block_order": ["about", "menu-1", "menu-2", "newsletter"],
+        "settings": {
+          "show_payment_icons": true,
+          "copyright_text": ""
+        }
+      }
+    }
+  },
+  "presets": {
+    "Aurora": {}
+  }
+}

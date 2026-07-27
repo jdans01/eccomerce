@@ -1,0 +1,42 @@
+<div class="page-width section-padding">
+  <div class="collection-toolbar">
+    <h1>{{ 'customer.addresses.title' | t }}</h1>
+    <a href="{{ routes.account_url }}" class="link">{{ 'customer.order.back' | t }}</a>
+  </div>
+
+  {%- form 'customer_address', customer.new_address -%}
+    <div class="form-narrow" style="margin:0 0 40px;">
+      <h3 style="margin-bottom:16px;">{{ 'customer.addresses.add_new' | t }}</h3>
+      <div class="form-grid">
+        <div class="form-field"><label>{{ 'customer.addresses.first_name' | t }}</label><input type="text" name="address[first_name]"></div>
+        <div class="form-field"><label>{{ 'customer.addresses.last_name' | t }}</label><input type="text" name="address[last_name]"></div>
+      </div>
+      <div class="form-field"><label>{{ 'customer.addresses.address1' | t }}</label><input type="text" name="address[address1]"></div>
+      <div class="form-field"><label>{{ 'customer.addresses.address2' | t }}</label><input type="text" name="address[address2]"></div>
+      <div class="form-grid">
+        <div class="form-field"><label>{{ 'customer.addresses.city' | t }}</label><input type="text" name="address[city]"></div>
+        <div class="form-field"><label>{{ 'customer.addresses.zip' | t }}</label><input type="text" name="address[zip]"></div>
+      </div>
+      <div class="form-field"><label>{{ 'customer.addresses.country' | t }}</label>{{ form | country_select: 'address[country]' }}</div>
+      <div class="form-field"><label>{{ 'customer.addresses.phone' | t }}</label><input type="tel" name="address[phone]"></div>
+      <button type="submit" class="btn btn--primary">{{ 'customer.addresses.add_new' | t }}</button>
+    </div>
+  {%- endform -%}
+
+  <div class="collection-grid" style="grid-template-columns:repeat(2,1fr);">
+    {%- for address in customer.addresses -%}
+      <div style="border:1px solid var(--color-border);border-radius:var(--radius);padding:20px;">
+        <p class="section-subtitle">
+          {{ address.first_name }} {{ address.last_name }}<br>
+          {{ address.address1 }}<br>
+          {{ address.city }}, {{ address.province_code }} {{ address.zip }}<br>
+          {{ address.country }}
+        </p>
+        {%- form 'customer_address', address -%}
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="btn btn--secondary btn--sm">{{ 'customer.addresses.delete' | t }}</button>
+        {%- endform -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>

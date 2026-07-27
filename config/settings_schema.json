@@ -1,0 +1,279 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Aurora",
+    "theme_version": "1.0.0",
+    "theme_author": "Aurora Studio",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com/support"
+  },
+  {
+    "name": "Colores",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Paleta principal"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Fondo",
+        "default": "#FAF7F2"
+      },
+      {
+        "type": "color",
+        "id": "color_background_secondary",
+        "label": "Fondo secundario",
+        "default": "#F2EBDD"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Texto principal",
+        "default": "#1C1B19"
+      },
+      {
+        "type": "color",
+        "id": "color_text_light",
+        "label": "Texto secundario",
+        "default": "#6B6459"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Bordes",
+        "default": "#E4DCCC"
+      },
+      {
+        "type": "header",
+        "content": "Color de acento"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Acento",
+        "default": "#C1502E"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_text",
+        "label": "Texto sobre acento",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "Estados"
+      },
+      {
+        "type": "color",
+        "id": "color_success",
+        "label": "Éxito",
+        "default": "#3F6B4A"
+      },
+      {
+        "type": "color",
+        "id": "color_error",
+        "label": "Error / Rebaja",
+        "default": "#B33A3A"
+      },
+      {
+        "type": "header",
+        "content": "Encabezado"
+      },
+      {
+        "type": "color",
+        "id": "color_header_background",
+        "label": "Fondo del encabezado",
+        "default": "#FAF7F2"
+      },
+      {
+        "type": "color",
+        "id": "color_header_text",
+        "label": "Texto del encabezado",
+        "default": "#1C1B19"
+      },
+      {
+        "type": "header",
+        "content": "Pie de página"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_background",
+        "label": "Fondo del pie de página",
+        "default": "#1C1B19"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_text",
+        "label": "Texto del pie de página",
+        "default": "#F2EBDD"
+      }
+    ]
+  },
+  {
+    "name": "Tipografía",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Títulos"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Fuente de títulos",
+        "default": "playfair_display_n7"
+      },
+      {
+        "type": "range",
+        "id": "type_header_scale",
+        "label": "Tamaño de títulos",
+        "min": 90,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Texto de cuerpo"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Fuente de cuerpo",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "range",
+        "id": "type_body_scale",
+        "label": "Tamaño de cuerpo",
+        "min": 90,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Diseño",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Ancho máximo de página",
+        "min": 1000,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "default": 1320
+      },
+      {
+        "type": "range",
+        "id": "spacing_sections",
+        "label": "Espacio entre secciones",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 60
+      },
+      {
+        "type": "select",
+        "id": "corner_radius",
+        "label": "Estilo de esquinas",
+        "options": [
+          { "value": "0px", "label": "Rectas" },
+          { "value": "6px", "label": "Suaves" },
+          { "value": "14px", "label": "Redondeadas" },
+          { "value": "24px", "label": "Muy redondeadas" }
+        ],
+        "default": "14px"
+      }
+    ]
+  },
+  {
+    "name": "Tarjetas de producto",
+    "settings": [
+      {
+        "type": "select",
+        "id": "card_image_ratio",
+        "label": "Proporción de imagen",
+        "options": [
+          { "value": "adapt", "label": "Adaptar a la imagen" },
+          { "value": "portrait", "label": "Retrato" },
+          { "value": "square", "label": "Cuadrada" }
+        ],
+        "default": "portrait"
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_vendor",
+        "label": "Mostrar marca",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_quick_add",
+        "label": "Mostrar botón de compra rápida",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_enable_hover_image",
+        "label": "Mostrar segunda imagen al pasar el mouse",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Carrito",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Tipo de carrito",
+        "options": [
+          { "value": "drawer", "label": "Panel lateral" },
+          { "value": "page", "label": "Página" }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_free_shipping",
+        "label": "Mostrar barra de envío gratis",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping_threshold",
+        "label": "Monto para envío gratis",
+        "default": "75"
+      }
+    ]
+  },
+  {
+    "name": "Redes sociales",
+    "settings": [
+      { "type": "header", "content": "Cuentas" },
+      { "type": "text", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "text", "id": "social_facebook", "label": "Facebook URL" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok URL" },
+      { "type": "text", "id": "social_pinterest", "label": "Pinterest URL" },
+      { "type": "text", "id": "social_youtube", "label": "YouTube URL" },
+      { "type": "text", "id": "social_x", "label": "X (Twitter) URL" }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Imagen de favicon",
+        "info": "Se mostrará a 32 x 32 px"
+      }
+    ]
+  }
+]

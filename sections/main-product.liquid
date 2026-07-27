@@ -1,0 +1,166 @@
+{%- liquid
+  assign product = product
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+<div class="page-width">
+  <div class="product-main">
+    <div class="product-gallery" data-product-gallery>
+      <div class="product-gallery__main" data-gallery-main>
+        {%- if current_variant.featured_image -%}
+          <img src="{{ current_variant.featured_image | image_url: width: 1200 }}" alt="{{ current_variant.featured_image.alt | escape }}" id="ProductMainImage" width="{{ current_variant.featured_image.width }}" height="{{ current_variant.featured_image.height }}">
+        {%- elsif product.featured_image -%}
+          <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.featured_image.alt | escape }}" id="ProductMainImage" width="{{ product.featured_image.width }}" height="{{ product.featured_image.height }}">
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="product-gallery__thumbs">
+          {%- for image in product.images -%}
+            <button type="button" class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}" data-gallery-thumb data-media-id="{{ image.id }}" data-full-src="{{ image | image_url: width: 1200 }}" aria-label="{{ 'products.product.view_image' | t }} {{ forloop.index }}">
+              <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | escape }}" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="product-info">
+      {%- if product.vendor != blank -%}<div class="product-info__vendor">{{ product.vendor }}</div>{%- endif -%}
+      <h1 class="product-info__title">{{ product.title }}</h1>
+
+      {%- if section.settings.show_rating -%}
+        <div class="product-info__rating">
+          <span class="stars">{%- for i in (1..5) -%}{% render 'icon', name: 'star' %}{%- endfor -%}</span>
+          <span>{{ 'products.product.reviews_placeholder' | t }}</span>
+        </div>
+      {%- endif -%}
+
+      <div data-product-price>
+        {%- render 'price', product: product, variant: current_variant -%}
+      </div>
+
+      {%- if product.description != blank -%}
+        <div class="product-info__description">{{ product.description | strip_html | truncatewords: 40 }}</div>
+      {%- endif -%}
+
+      <product-form data-product-form>
+        <script type="application/json" data-variant-json>
+          {{ product.variants | json }}
+        </script>
+        <form data-add-to-cart-form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+
+          {%- for option in product.options_with_values -%}
+            <div class="option-selector">
+              <div class="option-selector__label">
+                <span>{{ option.name }}</span>
+                <span class="current-value" data-current-value="{{ forloop.index }}">{{ option.selected_value }}</span>
+              </div>
+              <div class="option-values">
+                {%- assign is_color = false -%}
+                {%- if option.name == 'Color' or option.name == 'Colour' -%}{%- assign is_color = true -%}{%- endif -%}
+                {%- for value in option.values -%}
+                  {%- liquid
+                    assign input_id = option.position | append: '-' | append: forloop.index
+                    assign checked = false
+                    if value == option.selected_value
+                      assign checked = true
+                    endif
+                  -%}
+                  <label class="{% if is_color %}option-swatch{% else %}option-pill{% endif %}{% if checked %} is-selected{% endif %}"
+                    {% if is_color %}style="background:{{ value | handleize }};"{% endif %}
+                    title="{{ value }}">
+                    <input
+                      type="radio"
+                      name="option-{{ option.position }}"
+                      value="{{ value | escape }}"
+                      data-option-input
+                      data-option-position="{{ option.position }}"
+                      {% if checked %}checked{% endif %}
+                      class="visually-hidden"
+                    >
+                    {%- unless is_color -%}{{ value }}{%- endunless -%}
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+
+          <div class="option-selector">
+            <div class="option-selector__label"><span>{{ 'products.product.quantity' | t }}</span></div>
+            <div class="quantity-selector" data-quantity-selector>
+              <button type="button" data-qty-decrease aria-label="{{ 'cart.general.decrease' | t }}">−</button>
+              <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" data-qty-increase aria-label="{{ 'cart.general.increase' | t }}">+</button>
+            </div>
+          </div>
+
+          <p class="form-error" data-form-error hidden></p>
+
+          <div class="product-form__buy">
+            <button type="submit" class="btn btn--primary" data-submit-button {% unless current_variant.available %}disabled{% endunless %}>
+              {%- if current_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </button>
+          </div>
+        </form>
+      </product-form>
+
+      <div class="product-info__meta">
+        <div class="product-info__meta-item">{% render 'icon', name: 'truck' %}<span>{{ 'products.product.shipping_info' | t }}</span></div>
+        <div class="product-info__meta-item">{% render 'icon', name: 'refresh' %}<span>{{ 'products.product.returns_info' | t }}</span></div>
+        <div class="product-info__meta-item">{% render 'icon', name: 'shield' %}<span>{{ 'products.product.secure_checkout' | t }}</span></div>
+      </div>
+
+      <div class="accordion" data-accordion>
+        {%- if product.description != blank -%}
+          <div class="accordion-item">
+            <button type="button" class="accordion-item__trigger"><span>{{ 'products.product.details' | t }}</span><span class="accordion-item__icon">{% render 'icon', name: 'plus' %}</span></button>
+            <div class="accordion-item__panel"><div class="accordion-item__panel-inner">{{ product.description }}</div></div>
+          </div>
+        {%- endif -%}
+        <div class="accordion-item">
+          <button type="button" class="accordion-item__trigger"><span>{{ 'products.product.shipping_returns' | t }}</span><span class="accordion-item__icon">{% render 'icon', name: 'plus' %}</span></button>
+          <div class="accordion-item__panel"><div class="accordion-item__panel-inner">{{ section.settings.shipping_returns_text }}</div></div>
+        </div>
+        <div class="accordion-item">
+          <button type="button" class="accordion-item__trigger"><span>{{ 'products.product.care' | t }}</span><span class="accordion-item__icon">{% render 'icon', name: 'plus' %}</span></button>
+          <div class="accordion-item__panel"><div class="accordion-item__panel-inner">{{ section.settings.care_text }}</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.show_related and product.metafields.related.size > 0 -%}{%- endif -%}
+{%- if section.settings.show_related -%}
+  {%- assign related = collections[product.type | handleize].products | default: collections.all.products -%}
+  <div class="related-products page-width section-padding">
+    <div class="section-header">
+      <div class="section-header__text"><h2>{{ 'products.product.related_products' | t }}</h2></div>
+    </div>
+    <div class="product-grid">
+      {%- for p in related limit: 4 -%}
+        {%- unless p.handle == product.handle -%}
+          {%- render 'product-card', product: p -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Producto",
+  "settings": [
+    { "type": "checkbox", "id": "show_rating", "label": "Mostrar calificación", "default": true },
+    { "type": "checkbox", "id": "show_related", "label": "Mostrar productos relacionados", "default": true },
+    { "type": "richtext", "id": "shipping_returns_text", "label": "Texto de envío y devoluciones", "default": "<p>Envío estándar de 3 a 5 días hábiles. Devoluciones gratuitas dentro de los primeros 30 días.</p>" },
+    { "type": "richtext", "id": "care_text", "label": "Texto de cuidado del producto", "default": "<p>Lavar a mano con agua fría. Secar a la sombra.</p>" }
+  ]
+}
+{% endschema %}

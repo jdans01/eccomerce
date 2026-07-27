@@ -1,0 +1,186 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Ir directamente al contenido",
+      "close": "Cerrar",
+      "open_menu": "Abrir menú"
+    },
+    "navigation": {
+      "main": "Navegación principal"
+    },
+    "search": {
+      "title": "Buscar",
+      "placeholder": "Buscar productos…",
+      "submit": "Buscar",
+      "results_for": "resultados para",
+      "no_results": "No se encontraron resultados",
+      "no_results_text": "Intenta con otra palabra clave o revisa la ortografía."
+    },
+    "newsletter": {
+      "placeholder": "Tu correo electrónico",
+      "submit": "Suscribirme",
+      "success": "¡Gracias por suscribirte!"
+    },
+    "footer": {
+      "rights": "Todos los derechos reservados."
+    },
+    "pagination": {
+      "label": "Paginación",
+      "previous": "Página anterior",
+      "next": "Página siguiente"
+    },
+    "filters": {
+      "min": "Mín",
+      "max": "Máx",
+      "apply": "Aplicar filtros"
+    },
+    "collections": {
+      "view_all": "Ver todo",
+      "products": "productos",
+      "empty": "No hay productos en esta colección",
+      "empty_text": "Vuelve pronto, estamos agregando productos nuevos.",
+      "all_title": "Todas las colecciones"
+    },
+    "404": {
+      "title": "Página no encontrada",
+      "text": "Parece que la página que buscas no existe o fue movida.",
+      "button": "Volver al inicio"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Añadir al carrito",
+      "sold_out": "Agotado",
+      "unavailable": "No disponible",
+      "adding": "Añadiendo…",
+      "sale": "Rebaja",
+      "new": "Nuevo",
+      "quick_add": "Compra rápida",
+      "quantity": "Cantidad",
+      "details": "Detalles del producto",
+      "shipping_returns": "Envío y devoluciones",
+      "care": "Cuidado del producto",
+      "shipping_info": "Envío en 3-5 días hábiles",
+      "returns_info": "Devoluciones gratuitas en 30 días",
+      "secure_checkout": "Pago 100% seguro",
+      "related_products": "También te puede gustar",
+      "reviews_placeholder": "Valorado por nuestros clientes",
+      "view_image": "Ver imagen"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Carrito",
+      "remove": "Eliminar",
+      "empty": "Tu carrito está vacío",
+      "continue_shopping": "Seguir comprando",
+      "subtotal": "Subtotal",
+      "shipping_note": "Los impuestos y el envío se calculan en el pago.",
+      "view_cart": "Ver carrito",
+      "checkout": "Finalizar compra",
+      "decrease": "Disminuir cantidad",
+      "increase": "Aumentar cantidad",
+      "quantity": "Cantidad",
+      "update": "Actualizar carrito",
+      "free_shipping_remaining": "Te faltan {{amount}} para envío gratis",
+      "free_shipping_unlocked": "¡Felicidades! Tienes envío gratis"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "message": "Mensaje",
+      "submit": "Enviar mensaje",
+      "success": "Gracias por escribirnos. Te responderemos pronto.",
+      "error": "Hubo un problema al enviar el formulario. Intenta de nuevo."
+    }
+  },
+  "blog": {
+    "comments": {
+      "title": "Comentarios",
+      "success": "Tu comentario fue enviado y está pendiente de aprobación.",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "message": "Comentario",
+      "submit": "Publicar comentario"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Mi cuenta",
+      "logout": "Cerrar sesión"
+    },
+    "login": {
+      "title": "Iniciar sesión",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "sign_in": "Iniciar sesión",
+      "forgot_password": "¿Olvidaste tu contraseña?",
+      "no_account": "¿No tienes una cuenta?",
+      "create_account": "Crear cuenta",
+      "guest_continue": "Continuar como invitado"
+    },
+    "recover": {
+      "text": "Te enviaremos un correo para restablecer tu contraseña.",
+      "submit": "Enviar",
+      "cancel": "Cancelar"
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "first_name": "Nombre",
+      "last_name": "Apellido",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Crear cuenta",
+      "have_account": "¿Ya tienes una cuenta?"
+    },
+    "orders": {
+      "title": "Historial de pedidos",
+      "none": "Aún no has realizado ningún pedido.",
+      "order_number": "Pedido",
+      "date": "Fecha",
+      "payment_status": "Estado del pago",
+      "fulfillment_status": "Estado del envío",
+      "total": "Total"
+    },
+    "addresses": {
+      "title": "Direcciones",
+      "none": "No tienes direcciones guardadas.",
+      "manage": "Gestionar direcciones",
+      "add_new": "Añadir dirección",
+      "first_name": "Nombre",
+      "last_name": "Apellido",
+      "address1": "Dirección",
+      "address2": "Apartamento, suite, etc. (opcional)",
+      "city": "Ciudad",
+      "zip": "Código postal",
+      "country": "País",
+      "phone": "Teléfono",
+      "delete": "Eliminar"
+    },
+    "order": {
+      "title": "Pedido",
+      "back": "Volver a mi cuenta",
+      "date": "Fecha",
+      "quantity": "Cantidad",
+      "subtotal": "Subtotal",
+      "shipping": "Envío",
+      "total": "Total",
+      "shipping_address": "Dirección de envío"
+    },
+    "activate_account": {
+      "title": "Activar cuenta",
+      "text": "Crea tu contraseña para activar tu cuenta.",
+      "password_confirm": "Confirmar contraseña",
+      "submit": "Activar cuenta",
+      "decline": "Rechazar invitación"
+    },
+    "reset_password": {
+      "title": "Restablecer contraseña",
+      "text": "Ingresa tu nueva contraseña.",
+      "submit": "Restablecer contraseña"
+    }
+  }
+}

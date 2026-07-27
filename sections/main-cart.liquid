@@ -1,0 +1,51 @@
+<div class="page-width section-padding">
+  <h1 style="margin-bottom:32px;">{{ 'cart.general.title' | t }}</h1>
+
+  {%- if cart.item_count == 0 -%}
+    <div class="cart-empty">
+      <p>{{ 'cart.general.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">{{ 'cart.general.continue_shopping' | t }}</a>
+    </div>
+  {%- else -%}
+    <div class="collection-layout" style="grid-template-columns: 2fr 1fr;">
+      <div>
+        <form action="{{ routes.cart_url }}" method="post" id="CartForm">
+          {%- for item in cart.items -%}
+            <div class="cart-line" style="grid-template-columns:100px 1fr auto;">
+              <a href="{{ item.url }}"><img class="cart-line__image" style="width:100px;height:100px;" src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" loading="lazy"></a>
+              <div class="cart-line__details">
+                <a href="{{ item.url }}" class="cart-line__title" style="color:var(--color-text);">{{ item.product.title }}</a>
+                {%- if item.variant.title != 'Default Title' -%}<div class="cart-line__variant">{{ item.variant.title }}</div>{%- endif -%}
+                <div class="quantity-selector" style="margin-top:10px;">
+                  <button type="button" onclick="this.nextElementSibling.stepDown();this.form.requestSubmit();" aria-label="{{ 'cart.general.decrease' | t }}">−</button>
+                  <input type="number" name="updates[{{ forloop.index }}]" value="{{ item.quantity }}" min="0">
+                  <button type="button" onclick="this.previousElementSibling.stepUp();this.form.requestSubmit();" aria-label="{{ 'cart.general.increase' | t }}">+</button>
+                </div>
+              </div>
+              <div class="cart-line__price">{{ item.final_line_price | money }}</div>
+            </div>
+          {%- endfor -%}
+          <button type="submit" class="btn btn--secondary" style="margin-top:18px;">{{ 'cart.general.update' | t }}</button>
+        </form>
+      </div>
+
+      <div>
+        <div style="background:var(--color-background-secondary);border-radius:var(--radius);padding:24px;">
+          <div class="cart-subtotal">
+            <span>{{ 'cart.general.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="cart-note">{{ 'cart.general.shipping_note' | t }}</p>
+          <a href="{{ routes.cart_url }}/checkout" class="btn btn--primary btn--full">{{ 'cart.general.checkout' | t }}</a>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Carrito",
+  "settings": []
+}
+{% endschema %}
