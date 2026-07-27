@@ -17,7 +17,7 @@
     "type_header_scale": 100,
     "type_body_font": "assistant_n4",
     "type_body_scale": 100,
-    "page_width": 1320,
+    "page_max_width": 1320,
     "spacing_sections": 60,
     "corner_radius": "14px",
     "card_image_ratio": "portrait",

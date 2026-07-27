@@ -160,7 +160,7 @@
     "settings": [
       {
         "type": "range",
-        "id": "page_width",
+        "id": "page_max_width",
         "label": "Ancho máximo de página",
         "min": 1000,
         "max": 1600,

@@ -47,7 +47,7 @@
       --font-body-weight: {{ settings.type_body_font.weight }};
       --type-header-scale: {{ settings.type_header_scale | default: 100 }}%;
       --type-body-scale: {{ settings.type_body_scale | default: 100 }}%;
-      --page-width: {{ settings.page_width | default: 1320 }}px;
+      --page-width: {{ settings.page_max_width | default: 1320 }}px;
       --spacing-sections: {{ settings.spacing_sections | default: 60 }}px;
       --radius: {{ settings.corner_radius | default: '14px' }};
     }

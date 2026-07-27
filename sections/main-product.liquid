@@ -136,9 +136,9 @@
   </div>
 </div>
 
-{%- if section.settings.show_related and product.metafields.related.size > 0 -%}{%- endif -%}
 {%- if section.settings.show_related -%}
-  {%- assign related = collections[product.type | handleize].products | default: collections.all.products -%}
+  {%- assign related_type_handle = product.type | handleize -%}
+  {%- assign related = collections[related_type_handle].products | default: collections.all.products -%}
   <div class="related-products page-width section-padding">
     <div class="section-header">
       <div class="section-header__text"><h2>{{ 'products.product.related_products' | t }}</h2></div>
