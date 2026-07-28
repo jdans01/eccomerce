@@ -59,7 +59,22 @@
       </div>
 
       {%- if product.description != blank -%}
-        <div class="product-info__description">{{ product.description | strip_html | truncatewords: 40 }}</div>
+        {%- liquid
+          assign clean_description = product.description | strip_html | strip_newlines
+          assign description_items = clean_description | split: '✅'
+        -%}
+        {%- if description_items.size > 1 -%}
+          <ul class="product-info__feature-list">
+            {%- for item in description_items -%}
+              {%- assign trimmed_item = item | strip -%}
+              {%- if trimmed_item != blank -%}
+                <li>{% render 'icon', name: 'check' %}<span>{{ trimmed_item }}</span></li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- else -%}
+          <div class="product-info__description">{{ clean_description | truncatewords: 40 }}</div>
+        {%- endif -%}
       {%- endif -%}
 
       <product-form data-product-form>

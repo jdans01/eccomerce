@@ -885,6 +885,30 @@ section + section,
 
 .product-info__description { color: var(--color-text-light); margin-bottom: 26px; }
 
+.product-info__feature-list {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.product-info__feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--color-text-light);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+.product-info__feature-list svg {
+  flex-shrink: 0;
+  width: 19px;
+  height: 19px;
+  margin-top: 2px;
+  color: var(--color-success);
+}
+
 .option-selector { margin-bottom: 22px; }
 .option-selector__label { display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
 .option-selector__label .current-value { font-weight: 400; color: var(--color-text-light); }
