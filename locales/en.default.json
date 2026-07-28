@@ -65,7 +65,8 @@
       "secure_checkout": "100% secure checkout",
       "related_products": "You may also like",
       "reviews_placeholder": "Loved by our customers",
-      "view_image": "View image"
+      "view_image": "View image",
+      "view_video": "View video"
     }
   },
   "cart": {

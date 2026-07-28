@@ -65,7 +65,8 @@
       "secure_checkout": "Pago 100% seguro",
       "related_products": "También te puede gustar",
       "reviews_placeholder": "Valorado por nuestros clientes",
-      "view_image": "Ver imagen"
+      "view_image": "Ver imagen",
+      "view_video": "Ver video"
     }
   },
   "cart": {

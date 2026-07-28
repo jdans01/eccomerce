@@ -14,12 +14,30 @@
           {{ 'product-1' | placeholder_svg_tag }}
         {%- endif -%}
       </div>
-      {%- if product.images.size > 1 -%}
+      {%- if product.media.size > 1 -%}
         <div class="product-gallery__thumbs">
-          {%- for image in product.images -%}
-            <button type="button" class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}" data-gallery-thumb data-media-id="{{ image.id }}" data-full-src="{{ image | image_url: width: 1200 }}" aria-label="{{ 'products.product.view_image' | t }} {{ forloop.index }}">
-              <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | escape }}" loading="lazy">
-            </button>
+          {%- for media in product.media -%}
+            {%- if media.media_type == 'video' -%}
+              {%- liquid
+                assign video_src = ''
+                for source in media.sources
+                  if source.format == 'mp4' and source.width == 720
+                    assign video_src = source.url
+                  endif
+                endfor
+                if video_src == ''
+                  assign video_src = media.sources[0].url
+                endif
+              -%}
+              <button type="button" class="product-gallery__thumb" data-gallery-thumb data-media-id="{{ media.id }}" data-media-type="video" data-video-src="{{ video_src }}" data-poster="{{ media.preview_image | image_url: width: 1200 }}" aria-label="{{ 'products.product.view_video' | t }}">
+                <img src="{{ media.preview_image | image_url: width: 200 }}" alt="{{ media.alt | escape }}" loading="lazy">
+                <span class="product-gallery__play-badge">{% render 'icon', name: 'play' %}</span>
+              </button>
+            {%- else -%}
+              <button type="button" class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}" data-gallery-thumb data-media-id="{{ media.id }}" data-media-type="image" data-full-src="{{ media | image_url: width: 1200 }}" aria-label="{{ 'products.product.view_image' | t }} {{ forloop.index }}">
+                <img src="{{ media | image_url: width: 200 }}" alt="{{ media.alt | escape }}" loading="lazy">
+              </button>
+            {%- endif -%}
           {%- endfor -%}
         </div>
       {%- endif -%}

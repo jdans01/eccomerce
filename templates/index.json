@@ -12,6 +12,16 @@
         "button_link_2": "#steps"
       }
     },
+    "showcase": {
+      "type": "video-showcase",
+      "settings": {
+        "product": "soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
+        "eyebrow": "Míralo en acción",
+        "heading": "Firme incluso en el camino más exigente",
+        "text": "Instalación en segundos, agarre magnético que no cede y un giro de 360° para el ángulo perfecto.",
+        "button_label": "Comprar ahora"
+      }
+    },
     "trust": {
       "type": "icon-row",
       "blocks": {
@@ -101,5 +111,5 @@
       }
     }
   },
-  "order": ["hero", "trust", "spotlight", "specs", "steps", "testimonials", "faq", "newsletter"]
+  "order": ["hero", "showcase", "trust", "spotlight", "specs", "steps", "testimonials", "faq", "newsletter"]
 }

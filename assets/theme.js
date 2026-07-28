@@ -349,14 +349,18 @@
 
   /* ---------------- Product gallery ---------------- */
   qsa('[data-product-gallery]').forEach(function (gallery) {
-    var mainImg = qs('[data-gallery-main] img', gallery);
+    var mainWrap = qs('[data-gallery-main]', gallery);
     qsa('[data-gallery-thumb]', gallery).forEach(function (thumb) {
       thumb.addEventListener('click', function () {
         qsa('[data-gallery-thumb]', gallery).forEach(function (t) { t.classList.remove('is-active'); });
         thumb.classList.add('is-active');
-        if (mainImg) {
-          mainImg.src = thumb.getAttribute('data-full-src');
-          mainImg.srcset = '';
+        if (!mainWrap) return;
+        if (thumb.getAttribute('data-media-type') === 'video') {
+          var videoSrc = thumb.getAttribute('data-video-src');
+          var poster = thumb.getAttribute('data-poster');
+          mainWrap.innerHTML = '<video controls playsinline preload="metadata" poster="' + poster + '"><source src="' + videoSrc + '" type="video/mp4"></video>';
+        } else {
+          mainWrap.innerHTML = '<img src="' + thumb.getAttribute('data-full-src') + '" alt="">';
         }
       });
     });
