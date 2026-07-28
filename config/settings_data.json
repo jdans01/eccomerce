@@ -1,25 +1,25 @@
 {
   "current": {
-    "color_background": "#F5F7FA",
-    "color_background_secondary": "#E8ECF1",
-    "color_text": "#10151C",
-    "color_text_light": "#5B6472",
-    "color_border": "#D7DEE6",
-    "color_accent": "#2563EB",
-    "color_accent_text": "#FFFFFF",
-    "color_success": "#16A34A",
-    "color_error": "#E23744",
-    "color_header_background": "#10151C",
-    "color_header_text": "#F5F7FA",
-    "color_footer_background": "#0B0E13",
-    "color_footer_text": "#E8ECF1",
+    "color_background": "#0B0D11",
+    "color_background_secondary": "#161920",
+    "color_text": "#F4F5F7",
+    "color_text_light": "#9BA3AF",
+    "color_border": "#262B33",
+    "color_accent": "#FF7A29",
+    "color_accent_text": "#0B0D11",
+    "color_success": "#22C55E",
+    "color_error": "#F04438",
+    "color_header_background": "#0B0D11",
+    "color_header_text": "#F4F5F7",
+    "color_footer_background": "#000000",
+    "color_footer_text": "#C8CDD5",
     "type_header_font": "poppins_n7",
     "type_header_scale": 100,
     "type_body_font": "inter_n4",
     "type_body_scale": 100,
     "page_max_width": 1320,
-    "spacing_sections": 60,
-    "corner_radius": "6px",
+    "spacing_sections": 72,
+    "corner_radius": "0px",
     "card_image_ratio": "portrait",
     "card_show_vendor": true,
     "card_show_quick_add": true,
@@ -40,21 +40,21 @@
           "announcement-1": {
             "type": "announcement",
             "settings": {
-              "text": "🚗 Agarre magnético 360° — nunca se cae",
+              "text": "Sujeción magnética de grado industrial — nunca se cae",
               "link": ""
             }
           },
           "announcement-2": {
             "type": "announcement",
             "settings": {
-              "text": "Compatible con todos los teléfonos — envío rápido",
+              "text": "Compatible con todos los teléfonos — envío rápido y rastreado",
               "link": "shopify://collections/all"
             }
           },
           "announcement-3": {
             "type": "announcement",
             "settings": {
-              "text": "⭐ Garantía de devolución de 30 días",
+              "text": "Garantía de devolución de 30 días",
               "link": ""
             }
           }
@@ -83,7 +83,7 @@
             "type": "text",
             "settings": {
               "heading": "Nova",
-              "text": "Accesorios inteligentes para tu auto. Diseñados para que conduzcas seguro, sin complicaciones."
+              "text": "Accesorios de precisión para tu auto, diseñados para que conduzcas con total concentración."
             }
           },
           "menu-1": {
