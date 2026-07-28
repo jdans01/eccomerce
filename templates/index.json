@@ -23,13 +23,13 @@
       "block_order": ["b1", "b2", "b3", "b4"]
     },
     "spotlight": {
-      "type": "image-with-text",
+      "type": "featured-product",
       "settings": {
+        "product": "soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
         "eyebrow": "Diseñado para la carretera",
         "heading": "Gira, pliega, ajusta. A tu manera.",
         "text": "Ajusta el ángulo en tres ejes independientes (180° / 360° / 180°) y bloquéalo girando la perilla. Cuando no lo uses, se pliega para no ocupar espacio. Construido en aleación de aluminio con silicona antideslizante, sostiene hasta 1.5 kg sin ceder.",
         "button_label": "Comprar ahora",
-        "button_link": "shopify://products/soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
         "layout": "default"
       }
     },
