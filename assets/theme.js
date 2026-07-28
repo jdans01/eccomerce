@@ -393,14 +393,52 @@
     var nextBtn = section ? qs('[data-carousel-next]', section) : null;
     if (!track) return;
 
-    function scrollByCard(direction) {
+    var carouselReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var autoplay = carousel.getAttribute('data-carousel-autoplay') === 'true' && !carouselReducedMotion;
+    var speed = parseInt(carousel.getAttribute('data-carousel-speed'), 10) || 5000;
+    var autoplayTimer = null;
+
+    function cardWidth() {
       var card = track.firstElementChild;
-      var amount = card ? card.getBoundingClientRect().width + 24 : carousel.clientWidth * 0.8;
-      carousel.scrollBy({ left: amount * direction, behavior: 'smooth' });
+      return card ? card.getBoundingClientRect().width + 24 : carousel.clientWidth * 0.8;
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', function () { scrollByCard(-1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { scrollByCard(1); });
+    function scrollByCard(direction) {
+      carousel.scrollBy({ left: cardWidth() * direction, behavior: 'smooth' });
+    }
+
+    function isAtEnd() {
+      return carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 4;
+    }
+
+    function advance() {
+      if (isAtEnd()) {
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        scrollByCard(1);
+      }
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) { clearInterval(autoplayTimer); autoplayTimer = null; }
+    }
+
+    function startAutoplay() {
+      if (!autoplay || track.children.length < 2) return;
+      stopAutoplay();
+      autoplayTimer = setInterval(advance, speed);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { stopAutoplay(); scrollByCard(-1); startAutoplay(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { stopAutoplay(); scrollByCard(1); startAutoplay(); });
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('touchstart', stopAutoplay, { passive: true });
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', startAutoplay);
+
+    startAutoplay();
   });
 
   /* ---------------- Scroll reveal animations ---------------- */

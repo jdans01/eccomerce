@@ -12,7 +12,7 @@
     {%- endif -%}
   </div>
 
-  <div class="testimonials-carousel" data-carousel>
+  <div class="testimonials-carousel" data-carousel data-carousel-autoplay="{{ section.settings.autoplay }}" data-carousel-speed="{{ section.settings.autoplay_speed | times: 1000 }}">
     <div class="testimonials-carousel__track" data-carousel-track>
       {%- for block in section.blocks -%}
         <div class="testimonial-card" {{ block.shopify_attributes }}>
@@ -34,7 +34,9 @@
   "name": "Testimonios",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Opiniones" },
-    { "type": "text", "id": "heading", "label": "Título", "default": "Lo que dicen nuestros clientes" }
+    { "type": "text", "id": "heading", "label": "Título", "default": "Lo que dicen nuestros clientes" },
+    { "type": "checkbox", "id": "autoplay", "label": "Desplazamiento automático", "default": true },
+    { "type": "range", "id": "autoplay_speed", "label": "Velocidad (segundos)", "min": 3, "max": 10, "step": 1, "default": 5 }
   ],
   "blocks": [
     {

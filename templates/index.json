@@ -100,7 +100,9 @@
       "block_order": ["t1", "t2", "t3", "t4", "t5", "t6", "t7"],
       "settings": {
         "eyebrow": "Opiniones",
-        "heading": "Lo que dicen nuestros clientes"
+        "heading": "Lo que dicen nuestros clientes",
+        "autoplay": true,
+        "autoplay_speed": 5
       }
     },
     "faq": {
