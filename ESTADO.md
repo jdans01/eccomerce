@@ -159,6 +159,25 @@ seguir siendo legible sobre la imagen:
 - Subido a Shopify vía `themeFilesUpsert`: `assets/base.css`. Tema
   verificado sin errores.
 
+## Corrección de saturación visual del hero (última ronda)
+Tras aclarar el scrim en la ronda anterior, el usuario reportó que el hero
+"se ve muy saturado". Causa: la foto de fondo elegida (imagen destacada del
+producto) es en realidad una de las infografías de marketing del proveedor,
+con texto y flechas propias ya impresos en la imagen ("Rotación 360°",
+"Rotación 180°", "Gira la perilla para bloquear", etc.). Al aclarar el
+scrim, ese texto de la imagen quedó tan visible como el texto real del hero
+(título, párrafo), compitiendo entre sí y generando una sensación de
+desorden/saturación visual.
+- Solución: en vez de mostrar la foto nítida, se le aplicó
+  `filter: blur(9px) saturate(0.85) brightness(0.82)` (con `transform:
+  scale(1.06)` para tapar los bordes que difumina el blur) — así la imagen
+  aporta el ambiente/color del producto sin que sus textos y flechas
+  compitan con el texto real del hero.
+- El scrim volvió a subir a un punto intermedio (ni tan oscuro como el
+  original ni tan claro como la ronda anterior) para reforzar el contraste.
+- Subido a Shopify vía `themeFilesUpsert`: `assets/base.css`. Tema
+  verificado sin errores.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -169,6 +188,7 @@ seguir siendo legible sobre la imagen:
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Foto del hero mucho más visible (scrim más transparente) con
-texto con contorno/sombra para mantener la legibilidad. Subido y verificado
-en el tema `188794273826` sin errores.
+2026-07-28 — Foto de fondo del hero difuminada (blur) para evitar que el
+texto/flechas impresos en la infografía compitieran con el texto real del
+hero; scrim reequilibrado a un punto intermedio. Subido y verificado en el
+tema `188794273826` sin errores.
