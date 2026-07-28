@@ -114,6 +114,34 @@ solo una) y hacer la tienda "más estética y animada":
   `assets/theme.js`, `assets/base.css`, `templates/index.json`. Tema
   verificado sin errores (`processing: false, processingFailed: false`).
 
+## Fix del menú + hero más impactante (última ronda)
+El usuario reportó (con captura) que el menú se veía roto: el botón de
+hamburguesa aparecía siempre visible en escritorio junto al menú de texto,
+partiendo el encabezado en dos filas y desplazando los iconos de
+búsqueda/cuenta/carrito a una posición extraña debajo.
+- **Causa raíz encontrada**: en `assets/base.css`, la regla
+  `.site-header__nav-toggle { display: none; }` (pensada para ocultar el
+  botón de hamburguesa en escritorio) y la regla `.header-icon-btn { display:
+  inline-flex; }` (definida más abajo en el archivo) tenían la misma
+  especificidad CSS (una sola clase). Al empatar en especificidad gana la
+  que aparece después en el archivo — así que `header-icon-btn` sobreescribía
+  el `display: none` y el botón de menú móvil nunca se ocultaba en escritorio,
+  rompiendo la cuadrícula de 3 columnas del header (nav, logo, iconos) en dos
+  filas. Corregido subiendo la especificidad a `.header-icon-btn.site-header__nav-toggle`
+  tanto en la regla base como en la de la media query móvil.
+- **Hero más impactante**: la sección `hero.liquid` ahora acepta un selector
+  de producto (`type: product`, igual patrón que `video-showcase` y
+  `feature-grid`) y usa `product.featured_image` como fondo si no hay una
+  imagen manual — así el hero muestra una foto real del producto en vez de
+  quedar en fondo plano. Se asignó el producto en `templates/index.json`.
+  También se mejoró el scrim (degradado radial + lineal más oscuro y
+  cinematográfico) y se añadió `text-shadow` al título para legibilidad, más
+  dos manchas de resplandor (`hero__glow`) en color acento para el caso
+  `hero--plain` (sin imagen).
+- Subido a Shopify vía `themeFilesUpsert`: `assets/base.css`,
+  `sections/hero.liquid`, `templates/index.json`. Tema verificado sin
+  errores.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -124,6 +152,7 @@ solo una) y hacer la tienda "más estética y animada":
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Galería de las 3 imágenes reales del producto en portada
-(`feature-grid`) + sistema de animaciones (scroll-reveal, hover, entrada del
-hero). Subido y verificado en el tema `188794273826` sin errores.
+2026-07-28 — Fix del bug de especificidad CSS que rompía el menú en
+escritorio (hamburguesa siempre visible) + hero con foto real del producto
+de fondo y resplandor de acento. Subido y verificado en el tema
+`188794273826` sin errores.
