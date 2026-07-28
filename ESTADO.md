@@ -219,6 +219,26 @@ quedaba fundido en un párrafo denso, difícil de leer.
 - Subido a Shopify vía `themeFilesUpsert`: `sections/main-product.liquid`,
   `assets/base.css`. Tema verificado sin errores.
 
+## Error de Liquid en el footer + logo pendiente (última ronda)
+El usuario reportó el error visible al final de la página: `Liquid error
+(sections/footer line 56): input to image_tag must be an image_url`.
+- **Causa**: `sections/footer.liquid` línea 56 encadenaba
+  `{{ type | payment_type_img_url | image_tag: alt: type }}`. El filtro
+  `payment_type_img_url` devuelve una URL como texto plano, no el objeto
+  especial "image_url drop" que el filtro `image_tag` exige — de ahí el
+  error. Corregido construyendo la etiqueta `<img>` a mano con esa URL en
+  vez de encadenar `image_tag`.
+- Subido a Shopify vía `themeFilesUpsert`: `sections/footer.liquid`. Tema
+  verificado sin errores.
+- **Logo "NOVA-MX"**: el usuario pegó una imagen del logo en el chat y pidió
+  usarla. El ajuste `logo` (selector de imagen) ya existe en
+  `sections/header.liquid`, listo para recibirla — pero en este entorno
+  remoto no tengo forma de tomar el archivo que el usuario pegó en el chat
+  (no queda guardado como archivo accesible para mí, y no hay una vía de red
+  disponible para subir bytes de imagen directamente al CDN de Shopify desde
+  aquí). Le pedí que la suba él mismo desde el editor de Shopify (2 clics),
+  ya que es la única vía posible en este caso.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -229,7 +249,9 @@ quedaba fundido en un párrafo denso, difícil de leer.
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — La descripción corta del producto ahora se muestra como una
-lista real de viñetas con check en vez de un párrafo denso (detecta el
-patrón "✅" del proveedor). Subido y verificado en el tema `188794273826`
-sin errores.
+2026-07-28 — Corregido el error de Liquid en el footer
+(`payment_type_img_url` + `image_tag` incompatibles). Pendiente: el usuario
+debe subir él mismo el logo "NOVA-MX" desde el editor de Shopify (Encabezado
+→ Logo), ya que el asistente no tiene forma de tomar el archivo pegado en el
+chat en este entorno. Subido y verificado en el tema `188794273826` sin
+errores.
