@@ -53,7 +53,7 @@
     {%- if section.settings.show_payment_icons -%}
       <div class="payment-icons">
         {%- for type in shop.enabled_payment_types -%}
-          {{ type | payment_type_img_url | image_tag: alt: type }}
+          <img src="{{ type | payment_type_img_url }}" alt="{{ type }}" loading="lazy" width="38" height="24">
         {%- endfor -%}
       </div>
     {%- endif -%}
