@@ -33,6 +33,19 @@
       },
       "block_order": ["b1", "b2", "b3", "b4"]
     },
+    "spotlight": {
+      "type": "image-with-text",
+      "settings": {
+        "product": "soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
+        "image_index": 4,
+        "layout": "default",
+        "eyebrow": "Acabado premium",
+        "heading": "Negro elegante, agarre inquebrantable",
+        "text": "Terminado en Cool Black con imanes de rubidio N52 — la fuerza magnética que necesitas, con la estética que se ve bien en cualquier auto.",
+        "button_label": "Comprar ahora",
+        "button_link": "shopify://products/soporte-magnetico-para-telefono-en-auto-agarre-firme-360"
+      }
+    },
     "features": {
       "type": "feature-grid",
       "settings": {
@@ -114,5 +127,5 @@
       }
     }
   },
-  "order": ["hero", "showcase", "trust", "features", "specs", "steps", "testimonials", "faq", "newsletter"]
+  "order": ["hero", "showcase", "trust", "spotlight", "features", "specs", "steps", "testimonials", "faq", "newsletter"]
 }

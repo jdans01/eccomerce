@@ -1,8 +1,15 @@
 <div class="section-padding page-width">
+  {%- liquid
+    assign side_image = section.settings.image
+    if side_image == blank and section.settings.product != blank
+      assign image_index = section.settings.image_index | default: 1 | minus: 1
+      assign side_image = section.settings.product.images[image_index]
+    endif
+  -%}
   <div class="image-with-text{% if section.settings.layout == 'reverse' %} image-with-text--reverse{% endif %}">
     <div class="image-with-text__media">
-      {%- if section.settings.image -%}
-        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+      {%- if side_image -%}
+        <img src="{{ side_image | image_url: width: 1200 }}" alt="{{ side_image.alt | escape }}" loading="lazy" width="{{ side_image.width }}" height="{{ side_image.height }}">
       {%- else -%}
         {{ 'lifestyle-1' | placeholder_svg_tag }}
       {%- endif -%}
@@ -23,6 +30,8 @@
   "name": "Imagen con texto",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Imagen" },
+    { "type": "product", "id": "product", "label": "Producto (usa una de sus fotos si no eliges una imagen arriba)" },
+    { "type": "range", "id": "image_index", "label": "Qué foto del producto usar", "min": 1, "max": 6, "step": 1, "default": 1 },
     { "type": "select", "id": "layout", "label": "Diseño", "options": [{ "value": "default", "label": "Imagen a la izquierda" }, { "value": "reverse", "label": "Imagen a la derecha" }], "default": "default" },
     { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Nuestra historia" },
     { "type": "text", "id": "heading", "label": "Título", "default": "Hecho para durar" },
