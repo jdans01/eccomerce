@@ -239,6 +239,32 @@ El usuario reportó el error visible al final de la página: `Liquid error
   aquí). Le pedí que la suba él mismo desde el editor de Shopify (2 clics),
   ya que es la única vía posible en este caso.
 
+## Testimonios como carrusel + más opiniones (última ronda)
+El usuario pidió que la sección "Opiniones" se viera como carrusel y con más
+reseñas.
+- `sections/testimonials.liquid`: la cuadrícula fija de 3 columnas se
+  reemplazó por un carrusel horizontal con scroll-snap (`.testimonials-carousel`
+  + `.testimonials-carousel__track`), con flechas de navegación
+  (prev/next) junto al título de la sección. Sin librerías externas, mismo
+  patrón "vanilla JS" del resto del tema.
+- `assets/theme.js`: nuevo bloque `[data-carousel]` que localiza las
+  flechas dentro de la misma `.shopify-section` y hace scroll suave por el
+  ancho de una tarjeta.
+- `assets/base.css`: nuevos estilos `.carousel-nav`, `.carousel-arrow`,
+  `.testimonials-carousel(__track)`; `.testimonial-card` pasó de ser un
+  ítem de grid a un ítem flex con `scroll-snap-align`. Se quitó la regla
+  `.testimonials { grid-template-columns: 1fr; }` (obsoleta, el layout
+  responsivo ahora lo maneja el ancho `min(360px, 82vw)` de cada tarjeta).
+- `templates/index.json`: de 3 a 7 testimonios (t1–t7), variados y
+  relacionados con features reales (imán en baches, instalación rápida,
+  compatibilidad con teléfonos grandes, diseño plegable).
+- Nuevas claves de idioma `general.accessibility.previous_slide` /
+  `next_slide` en `locales/es.json` y `en.default.json` para las flechas.
+- Subido a Shopify vía `themeFilesUpsert`: `sections/testimonials.liquid`,
+  `assets/theme.js`, `assets/base.css`, `templates/index.json`,
+  `locales/es.json`, `locales/en.default.json`. Tema verificado sin
+  errores.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -249,9 +275,8 @@ El usuario reportó el error visible al final de la página: `Liquid error
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Corregido el error de Liquid en el footer
-(`payment_type_img_url` + `image_tag` incompatibles). Pendiente: el usuario
-debe subir él mismo el logo "NOVA-MX" desde el editor de Shopify (Encabezado
-→ Logo), ya que el asistente no tiene forma de tomar el archivo pegado en el
-chat en este entorno. Subido y verificado en el tema `188794273826` sin
-errores.
+2026-07-28 — Sección de opiniones convertida en carrusel con flechas de
+navegación y ampliada de 3 a 7 testimonios. Pendiente: el usuario debe subir
+él mismo el logo "NOVA-MX" desde el editor de Shopify (Encabezado → Logo),
+ya que el asistente no tiene forma de tomar el archivo pegado en el chat en
+este entorno. Subido y verificado en el tema `188794273826` sin errores.
