@@ -204,6 +204,21 @@ saltar/recortarse justo debajo del header tras la carga):
   vista en vivo yo mismo, conviene que revise la página de producto de nuevo
   tras esta subida y confirme si el problema desapareció.
 
+## Descripción corta del producto como lista real (última ronda)
+El usuario mostró una captura de la descripción corta bajo el precio: el
+texto del proveedor usa emojis ✅ como separadores de característica, pero
+al pasarlo por `strip_html` se perdían los saltos de línea originales y todo
+quedaba fundido en un párrafo denso, difícil de leer.
+- `sections/main-product.liquid`: ahora se detecta si la descripción tiene
+  más de un segmento separado por "✅"; si es así, se renderiza como una
+  lista real (`<ul class="product-info__feature-list">`) con un icono de
+  check delante de cada punto, en vez del párrafo corrido. Si la descripción
+  no sigue ese patrón, se conserva el comportamiento anterior (párrafo con
+  `truncatewords`).
+- Nuevo estilo `.product-info__feature-list` en `assets/base.css`.
+- Subido a Shopify vía `themeFilesUpsert`: `sections/main-product.liquid`,
+  `assets/base.css`. Tema verificado sin errores.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -214,8 +229,7 @@ saltar/recortarse justo debajo del header tras la carga):
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Corrección defensiva del título de producto apareciendo
-cortado bajo el header: `overflow-anchor: none`, header con alto mínimo
-estable, más aire en `.product-main`. Pendiente de que el usuario confirme
-si se resolvió (no se pudo reproducir en vivo por restricción de red del
-entorno). Subido y verificado en el tema `188794273826` sin errores.
+2026-07-28 — La descripción corta del producto ahora se muestra como una
+lista real de viñetas con check en vez de un párrafo denso (detecta el
+patrón "✅" del proveedor). Subido y verificado en el tema `188794273826`
+sin errores.
