@@ -288,6 +288,25 @@ costado en la portada.
 - Subido a Shopify vía `themeFilesUpsert`: `sections/image-with-text.liquid`,
   `templates/index.json`. Tema verificado sin errores.
 
+## Carrusel de opiniones con reproducción automática (última ronda)
+El usuario pidió que las reseñas se desplazaran solas, con animación.
+- `sections/testimonials.liquid`: se agregaron ajustes de sección
+  `autoplay` (casilla, default activado) y `autoplay_speed` (segundos,
+  default 5), pasados al carrusel como `data-carousel-autoplay` /
+  `data-carousel-speed`.
+- `assets/theme.js`: el manejador de `[data-carousel]` ahora arranca un
+  `setInterval` que avanza una tarjeta cada X segundos (scroll suave, misma
+  animación que las flechas), y al llegar al final vuelve al inicio
+  también con scroll suave (loop continuo). Se pausa automáticamente al
+  pasar el mouse, tocar la pantalla o enfocar con teclado dentro del
+  carrusel, y se reanuda al salir — para que el usuario pueda leer con
+  calma sin pelear contra el autoplay. Respeta `prefers-reduced-motion`
+  (no se activa si el usuario tiene animaciones reducidas en su sistema).
+- `templates/index.json`: valores explícitos `autoplay: true`,
+  `autoplay_speed: 5` en la sección de testimonios de la portada.
+- Subido a Shopify vía `themeFilesUpsert`: `sections/testimonials.liquid`,
+  `assets/theme.js`, `templates/index.json`. Tema verificado sin errores.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -298,9 +317,8 @@ costado en la portada.
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Nueva sección en la portada con la 4ª foto real del producto
-("Cool Black") a un costado + texto, usando la imagen ya subida al producto
-en Shopify (sin necesidad de subir nada nuevo). Pendiente: el usuario debe
+2026-07-28 — Carrusel de opiniones con reproducción automática (loop suave,
+se pausa al interactuar, respeta accesibilidad). Pendiente: el usuario debe
 subir él mismo el logo "NOVA-MX" desde el editor de Shopify (Encabezado →
 Logo), ya que el asistente no tiene forma de tomar archivos pegados
 directamente en el chat en este entorno. Subido y verificado en el tema
