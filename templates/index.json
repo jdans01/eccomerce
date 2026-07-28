@@ -32,15 +32,13 @@
       },
       "block_order": ["b1", "b2", "b3", "b4"]
     },
-    "spotlight": {
-      "type": "featured-product",
+    "features": {
+      "type": "feature-grid",
       "settings": {
         "product": "soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
-        "eyebrow": "Diseñado para la carretera",
-        "heading": "Gira, pliega, ajusta. A tu manera.",
-        "text": "Ajusta el ángulo en tres ejes independientes (180° / 360° / 180°) y bloquéalo girando la perilla. Cuando no lo uses, se pliega para no ocupar espacio. Construido en aleación de aluminio con silicona antideslizante, sostiene hasta 1.5 kg sin ceder.",
-        "button_label": "Comprar ahora",
-        "layout": "default"
+        "eyebrow": "Cada detalle cuenta",
+        "heading": "Tecnología pensada para durar",
+        "text": "Ajuste en tres ejes, imanes de rubidio N52 y rotación bidireccional de 360° — diseñado para que nunca se caiga."
       }
     },
     "specs": {
@@ -49,7 +47,7 @@
         "sp1": { "type": "spec", "settings": { "label": "Material", "value": "Aleación de aluminio + silicona antideslizante" } },
         "sp2": { "type": "spec", "settings": { "label": "Rotación", "value": "3 ejes independientes — 180° / 360° / 180°" } },
         "sp3": { "type": "spec", "settings": { "label": "Diseño", "value": "Plegable, compacto y portátil" } },
-        "sp4": { "type": "spec", "settings": { "label": "Fuerza magnética", "value": "Ultra potente — soporta hasta 1.5 kg" } },
+        "sp4": { "type": "spec", "settings": { "label": "Imanes", "value": "Rubidio N52 de alta potencia — soporta hasta 1.5 kg" } },
         "sp5": { "type": "spec", "settings": { "label": "Compatibilidad", "value": "Universal, teléfonos de 4 a 7 pulgadas" } },
         "sp6": { "type": "spec", "settings": { "label": "Instalación", "value": "Base con almohadillas adhesivas, sin dañar el auto" } },
         "sp7": { "type": "spec", "settings": { "label": "Colores disponibles", "value": "Negro, Plata" } }
@@ -111,5 +109,5 @@
       }
     }
   },
-  "order": ["hero", "showcase", "trust", "spotlight", "specs", "steps", "testimonials", "faq", "newsletter"]
+  "order": ["hero", "showcase", "trust", "features", "specs", "steps", "testimonials", "faq", "newsletter"]
 }

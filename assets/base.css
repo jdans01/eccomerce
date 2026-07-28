@@ -801,6 +801,61 @@ section + section,
 .video-showcase__content p { color: rgba(255,255,255,0.85); margin-bottom: 20px; }
 .product-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
 
+/* ---------- Feature grid (detail gallery) ---------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.feature-grid__item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-background-secondary);
+  aspect-ratio: 1/1;
+}
+.feature-grid__item img { width: 100%; height: 100%; object-fit: contain; transition: transform .4s ease; }
+.feature-grid__item:hover img { transform: scale(1.04); }
+
+/* ---------- Motion: scroll reveal + hover polish ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+.hero__content { animation: heroFadeUp .9s cubic-bezier(.22,.61,.36,1) both; }
+.video-showcase__content { animation: heroFadeUp .9s cubic-bezier(.22,.61,.36,1) both; animation-delay: .1s; }
+
+.feature-grid__item,
+.step-card,
+.testimonial-card,
+.collection-card,
+.product-card {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.feature-grid__item:hover,
+.step-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+}
+.collection-card:hover,
+.product-card:hover .product-card__media-wrap {
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .hero__content, .video-showcase__content { animation: none !important; }
+  .feature-grid__item, .step-card, .testimonial-card, .collection-card, .product-card,
+  .feature-grid__item img, .step-card__number { transition: none !important; }
+}
+
 .product-info__vendor { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; color: var(--color-text-light); margin-bottom: 8px; }
 .product-info__title { margin-bottom: 10px; }
 .product-info__price { font-size: 1.3rem; margin-bottom: 18px; }
@@ -1047,6 +1102,7 @@ section + section,
   .image-with-text--reverse .image-with-text__media { order: 0; }
   .steps-grid { grid-template-columns: 1fr; }
   .specs-block { grid-template-columns: 1fr; gap: 24px; }
+  .feature-grid { grid-template-columns: 1fr; }
   .product-main { grid-template-columns: 1fr; gap: 30px; }
   .collection-layout { grid-template-columns: 1fr; }
   .site-footer__grid { grid-template-columns: 1fr 1fr; }

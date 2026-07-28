@@ -385,6 +385,33 @@
   /* ---------------- Quick add (product cards) ---------------- */
   qsa('[data-quick-add-form]').forEach(bindAddToCartForm);
 
+  /* ---------------- Scroll reveal animations ---------------- */
+  var revealSelectors = '.feature-grid__item, .step-card, .testimonial-card, .specs-table__row, .collection-card, .product-card, .faq-item, .image-with-text__media, .image-with-text__content';
+  var revealEls = qsa(revealSelectors);
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (revealEls.length && 'IntersectionObserver' in window && !prefersReducedMotion) {
+    var groups = {};
+    revealEls.forEach(function (el) {
+      var parent = el.parentElement;
+      if (!parent._revealIndex) parent._revealIndex = 0;
+      var i = parent._revealIndex++;
+      el.classList.add('reveal');
+      el.style.transitionDelay = Math.min(i, 5) * 80 + 'ms';
+    });
+
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  }
+
   /* Initial cart count sync */
   document.addEventListener('DOMContentLoaded', function () {
     fetch(routes + 'cart.js').then(function (r) { return r.json(); }).then(function (cart) {
