@@ -265,6 +265,29 @@ reseñas.
   `locales/es.json`, `locales/en.default.json`. Tema verificado sin
   errores.
 
+## Foto "COOL BLACK" a un costado en portada (última ronda)
+El usuario pegó en el chat una foto limpia del producto sobre fondo blanco
+("COOL BLACK — Strong Magnetic Car Phone Holder") y pidió agregarla a un
+costado en la portada.
+- Antes de intentar nada con el archivo pegado (que en este entorno no
+  puedo tomar, ver ronda anterior sobre el logo), consulté el producto en
+  Shopify con `get-product` y confirmé que ahora tiene **4 imágenes** (antes
+  eran 3) — la última (`image_012.webp`) se subió después del último
+  catálogo registrado aquí, casi con certeza es la misma foto que el
+  usuario compartió. Así que no hizo falta subir nada: se referenció en
+  vivo desde el producto.
+- `sections/image-with-text.liquid` (ya existía, con layout imagen-a-un-lado
+  + texto-al-otro) ahora acepta opcionalmente un selector de producto +
+  índice de foto (`image_index`), igual patrón que `hero`/`video-showcase`/
+  `feature-grid`. Si no se elige una imagen manual, usa
+  `product.images[image_index - 1]`.
+- Se agregó una nueva instancia de esta sección ("spotlight") a
+  `templates/index.json`, justo después de la franja de confianza y antes
+  de la galería de detalles, mostrando la 4ª foto del producto (`image_index: 4`)
+  con texto sobre el acabado "Cool Black" y los imanes N52.
+- Subido a Shopify vía `themeFilesUpsert`: `sections/image-with-text.liquid`,
+  `templates/index.json`. Tema verificado sin errores.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -275,8 +298,10 @@ reseñas.
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Sección de opiniones convertida en carrusel con flechas de
-navegación y ampliada de 3 a 7 testimonios. Pendiente: el usuario debe subir
-él mismo el logo "NOVA-MX" desde el editor de Shopify (Encabezado → Logo),
-ya que el asistente no tiene forma de tomar el archivo pegado en el chat en
-este entorno. Subido y verificado en el tema `188794273826` sin errores.
+2026-07-28 — Nueva sección en la portada con la 4ª foto real del producto
+("Cool Black") a un costado + texto, usando la imagen ya subida al producto
+en Shopify (sin necesidad de subir nada nuevo). Pendiente: el usuario debe
+subir él mismo el logo "NOVA-MX" desde el editor de Shopify (Encabezado →
+Logo), ya que el asistente no tiene forma de tomar archivos pegados
+directamente en el chat en este entorno. Subido y verificado en el tema
+`188794273826` sin errores.
