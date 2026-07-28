@@ -88,6 +88,32 @@ El producto tiene, además de las 3 fotos, un video de demostración nativo
   compra — usa un selector de producto y toma su video en vivo (o su foto
   si no tuviera video), sin necesitar que el asistente descargue nada.
 
+## Galería de las 3 imágenes reales + animaciones (última ronda)
+El usuario pidió mostrar las 3 fotos reales del producto en la portada (no
+solo una) y hacer la tienda "más estética y animada":
+- **Nueva sección `feature-grid.liquid`**: reemplaza al antiguo spotlight de
+  una sola imagen (`featured-product`) en la portada. Recorre
+  `feature_product.images limit: 3` en vivo (selector de producto), así que
+  muestra las 3 infografías reales del proveedor sin que el asistente tenga
+  que descargar nada. `templates/index.json` cambió la sección `spotlight`
+  por `features` (tipo `feature-grid`) y actualizó el `order`.
+- **Corrección de recorte**: `.image-with-text__media img` pasó de
+  `aspect-ratio: 4/3; object-fit: cover` a `aspect-ratio: 1/1; object-fit:
+  contain`, y `card_image_ratio` pasó de `portrait` a `square`, para que las
+  imágenes cuadradas (1254×1254) del proveedor no corten el texto de las
+  infografías. `.feature-grid__item img` usa el mismo `object-fit: contain`.
+- **Sistema de animación** añadido en `assets/base.css` y `assets/theme.js`:
+  - Aparición al hacer scroll (`.reveal` + `IntersectionObserver` en
+    `theme.js`) sobre tarjetas de producto, testimonios, pasos, specs, FAQ,
+    galería de detalles, etc., con `prefers-reduced-motion` respetado.
+  - Animación de entrada del hero y del video-showcase (`@keyframes
+    heroFadeUp`).
+  - Efectos hover de elevación (`translateY` + sombra) en tarjetas de
+    producto, testimonios, pasos, colecciones y la nueva galería de detalles.
+- Subido a Shopify vía `themeFilesUpsert`: `sections/feature-grid.liquid`,
+  `assets/theme.js`, `assets/base.css`, `templates/index.json`. Tema
+  verificado sin errores (`processing: false, processingFailed: false`).
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -98,7 +124,6 @@ El producto tiene, además de las 3 fotos, un video de demostración nativo
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Rediseño completo (v2): paleta oscura + ámbar, nueva estructura
-de portada, textos enriquecidos con detalles reales del producto. Tema
-recreado (`188794273826`) tras la desaparición del anterior y repoblado por
-completo vía `themeFilesUpsert`.
+2026-07-28 — Galería de las 3 imágenes reales del producto en portada
+(`feature-grid`) + sistema de animaciones (scroll-reveal, hover, entrada del
+hero). Subido y verificado en el tema `188794273826` sin errores.
