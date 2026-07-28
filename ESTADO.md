@@ -142,6 +142,23 @@ búsqueda/cuenta/carrito a una posición extraña debajo.
   `sections/hero.liquid`, `templates/index.json`. Tema verificado sin
   errores.
 
+## Foto del hero más visible + texto con contorno (última ronda)
+El usuario pidió que la foto de fondo del hero se viera con más
+transparencia (menos oscurecida) y que el texto resaltara con bordes para
+seguir siendo legible sobre la imagen:
+- `.hero__scrim` (el degradado oscuro sobre la foto) se aclaró bastante:
+  opacidades máximas bajaron de 0.94/0.7/0.6/0.3 a 0.7/0.4/0.36/0.1 — la foto
+  real del producto ahora se ve mucho más, especialmente en el lado derecho.
+- El título del hero (`h1`) ahora lleva un contorno de texto real
+  (`-webkit-text-stroke`) más una sombra en las 4 direcciones (simula borde
+  en navegadores sin soporte de `text-stroke`) y una sombra difusa adicional,
+  para que siga leyéndose nítido incluso con la foto más visible detrás.
+  El `eyebrow` y el párrafo también llevan sombra de texto más marcada.
+  En el modo sin imagen (`hero--plain`) estas sombras/contorno se anulan
+  para no ensuciar el texto sobre fondo sólido.
+- Subido a Shopify vía `themeFilesUpsert`: `assets/base.css`. Tema
+  verificado sin errores.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -152,7 +169,6 @@ búsqueda/cuenta/carrito a una posición extraña debajo.
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Fix del bug de especificidad CSS que rompía el menú en
-escritorio (hamburguesa siempre visible) + hero con foto real del producto
-de fondo y resplandor de acento. Subido y verificado en el tema
-`188794273826` sin errores.
+2026-07-28 — Foto del hero mucho más visible (scrim más transparente) con
+texto con contorno/sombra para mantener la legibilidad. Subido y verificado
+en el tema `188794273826` sin errores.
