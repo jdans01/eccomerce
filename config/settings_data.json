@@ -20,7 +20,7 @@
     "page_max_width": 1320,
     "spacing_sections": 72,
     "corner_radius": "0px",
-    "card_image_ratio": "portrait",
+    "card_image_ratio": "square",
     "card_show_vendor": true,
     "card_show_quick_add": true,
     "card_enable_hover_image": true,

@@ -607,7 +607,7 @@ section + section,
   gap: 56px;
   align-items: center;
 }
-.image-with-text__media img { border-radius: var(--radius); width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.image-with-text__media img { border-radius: var(--radius); width: 100%; aspect-ratio: 1/1; object-fit: contain; background: var(--color-background-secondary); }
 .image-with-text--reverse .image-with-text__media { order: 2; }
 .image-with-text__content p { color: var(--color-text-light); font-size: 1.05rem; }
 
