@@ -78,9 +78,13 @@
       "blocks": {
         "t1": { "type": "testimonial", "settings": { "rating": 5, "quote": "Ya no se me cae el teléfono ni en las curvas cerradas. Se instaló en menos de un minuto.", "author": "Diego M." } },
         "t2": { "type": "testimonial", "settings": { "rating": 5, "quote": "Uso el GPS todo el día y el agarre sigue firme. El ajuste en tres ejes es un lujo.", "author": "Andrea P." } },
-        "t3": { "type": "testimonial", "settings": { "rating": 4, "quote": "Se pliega cuando no lo uso y no estorba. Muy recomendado.", "author": "Luis R." } }
+        "t3": { "type": "testimonial", "settings": { "rating": 4, "quote": "Se pliega cuando no lo uso y no estorba. Muy recomendado.", "author": "Luis R." } },
+        "t4": { "type": "testimonial", "settings": { "rating": 5, "quote": "Lo probé en caminos con baches y ni se inmuta. El imán es brutal, de verdad no se despega.", "author": "Roberto S." } },
+        "t5": { "type": "testimonial", "settings": { "rating": 5, "quote": "Súper fácil de instalar. En menos de un minuto ya estaba usando el GPS sin tener que sostener el teléfono.", "author": "Camila V." } },
+        "t6": { "type": "testimonial", "settings": { "rating": 4, "quote": "Sostiene mi teléfono grande sin problema, incluso con funda gruesa no se cae.", "author": "Fernando T." } },
+        "t7": { "type": "testimonial", "settings": { "rating": 5, "quote": "El diseño plegable me encantó, no estorba cuando no lo uso y se ve muy resistente.", "author": "Paola H." } }
       },
-      "block_order": ["t1", "t2", "t3"],
+      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6", "t7"],
       "settings": {
         "eyebrow": "Opiniones",
         "heading": "Lo que dicen nuestros clientes"

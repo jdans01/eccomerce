@@ -3,7 +3,9 @@
     "accessibility": {
       "skip_to_content": "Ir directamente al contenido",
       "close": "Cerrar",
-      "open_menu": "Abrir menú"
+      "open_menu": "Abrir menú",
+      "previous_slide": "Opinión anterior",
+      "next_slide": "Siguiente opinión"
     },
     "navigation": {
       "main": "Navegación principal"

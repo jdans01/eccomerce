@@ -656,9 +656,38 @@ section + section,
 .collection-card__label h3 { color: #fff; margin: 0; }
 .collection-card__label span { font-size: 0.85rem; opacity: 0.9; }
 
-/* ---------- Testimonials ---------- */
-.testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+/* ---------- Testimonials carousel ---------- */
+.carousel-nav { display: flex; gap: 8px; flex-shrink: 0; }
+.carousel-arrow {
+  width: 42px; height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  color: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s ease, border-color .15s ease;
+}
+.carousel-arrow:hover { background: var(--color-background-secondary); border-color: var(--color-text); }
+.carousel-arrow svg { width: 18px; height: 18px; }
+
+.testimonials-carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin: 0 -24px;
+  padding: 4px 24px 8px;
+}
+.testimonials-carousel::-webkit-scrollbar { display: none; }
+.testimonials-carousel__track {
+  display: flex;
+  gap: 24px;
+}
 .testimonial-card {
+  flex: 0 0 min(360px, 82vw);
+  scroll-snap-align: start;
   background: var(--color-background-secondary);
   border-radius: var(--radius);
   padding: 30px;
@@ -1141,7 +1170,6 @@ section + section,
   .site-header__logo { justify-self: start; margin-left: 8px; }
   .product-grid, .product-grid--3 { grid-template-columns: repeat(2, 1fr); }
   .collection-grid { grid-template-columns: repeat(2, 1fr); }
-  .testimonials { grid-template-columns: 1fr; }
   .image-with-text { grid-template-columns: 1fr; gap: 28px; }
   .image-with-text--reverse .image-with-text__media { order: 0; }
   .steps-grid { grid-template-columns: 1fr; }

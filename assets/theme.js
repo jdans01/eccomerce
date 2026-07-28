@@ -385,6 +385,24 @@
   /* ---------------- Quick add (product cards) ---------------- */
   qsa('[data-quick-add-form]').forEach(bindAddToCartForm);
 
+  /* ---------------- Carousels (e.g. testimonials) ---------------- */
+  qsa('[data-carousel]').forEach(function (carousel) {
+    var section = carousel.closest('.shopify-section') || carousel.parentElement;
+    var track = qs('[data-carousel-track]', carousel);
+    var prevBtn = section ? qs('[data-carousel-prev]', section) : null;
+    var nextBtn = section ? qs('[data-carousel-next]', section) : null;
+    if (!track) return;
+
+    function scrollByCard(direction) {
+      var card = track.firstElementChild;
+      var amount = card ? card.getBoundingClientRect().width + 24 : carousel.clientWidth * 0.8;
+      carousel.scrollBy({ left: amount * direction, behavior: 'smooth' });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { scrollByCard(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { scrollByCard(1); });
+  });
+
   /* ---------------- Scroll reveal animations ---------------- */
   var revealSelectors = '.feature-grid__item, .step-card, .testimonial-card, .specs-table__row, .collection-card, .product-card, .faq-item, .image-with-text__media, .image-with-text__content';
   var revealEls = qsa(revealSelectors);

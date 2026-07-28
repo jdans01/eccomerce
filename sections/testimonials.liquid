@@ -4,20 +4,28 @@
       {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
       <h2>{{ section.settings.heading }}</h2>
     </div>
+    {%- if section.blocks.size > 1 -%}
+      <div class="carousel-nav">
+        <button type="button" class="carousel-arrow" data-carousel-prev aria-label="{{ 'general.accessibility.previous_slide' | t }}">{% render 'icon', name: 'chevron-left' %}</button>
+        <button type="button" class="carousel-arrow" data-carousel-next aria-label="{{ 'general.accessibility.next_slide' | t }}">{% render 'icon', name: 'chevron-right' %}</button>
+      </div>
+    {%- endif -%}
   </div>
 
-  <div class="testimonials">
-    {%- for block in section.blocks -%}
-      <div class="testimonial-card" {{ block.shopify_attributes }}>
-        <div class="testimonial-card__stars">
-          {%- for i in (1..5) -%}
-            {%- if i <= block.settings.rating -%}{% render 'icon', name: 'star' %}{%- endif -%}
-          {%- endfor -%}
+  <div class="testimonials-carousel" data-carousel>
+    <div class="testimonials-carousel__track" data-carousel-track>
+      {%- for block in section.blocks -%}
+        <div class="testimonial-card" {{ block.shopify_attributes }}>
+          <div class="testimonial-card__stars">
+            {%- for i in (1..5) -%}
+              {%- if i <= block.settings.rating -%}{% render 'icon', name: 'star' %}{%- endif -%}
+            {%- endfor -%}
+          </div>
+          <blockquote>“{{ block.settings.quote }}”</blockquote>
+          <div class="testimonial-card__author">{{ block.settings.author }}</div>
         </div>
-        <blockquote>“{{ block.settings.quote }}”</blockquote>
-        <div class="testimonial-card__author">{{ block.settings.author }}</div>
-      </div>
-    {%- endfor -%}
+      {%- endfor -%}
+    </div>
   </div>
 </div>
 
