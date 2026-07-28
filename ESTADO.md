@@ -76,6 +76,18 @@ artículo, lista de colecciones).
   que el asistente descargue ninguna imagen, el navegador del cliente la pide
   directamente al CDN de Shopify.
 
+## Video del producto
+El producto tiene, además de las 3 fotos, un video de demostración nativo
+(`gid://shopify/Video/31633354948642`). Se integró en:
+- **Galería de producto**: las miniaturas ahora recorren `product.media`
+  (no solo `product.images`); la del video muestra el fotograma de vista
+  previa con una insignia de "reproducir" y, al hacer clic, sustituye el
+  visor principal por un `<video>` real con controles.
+- **Nueva sección `video-showcase`** en la portada, justo después del hero:
+  video en autoplay/mudo/loop de fondo con texto superpuesto y botón de
+  compra — usa un selector de producto y toma su video en vivo (o su foto
+  si no tuviera video), sin necesitar que el asistente descargue nada.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
