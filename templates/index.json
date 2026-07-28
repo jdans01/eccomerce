@@ -3,74 +3,70 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "Nueva colección — Primavera",
-        "heading": "Diseño consciente para tu día a día",
-        "text": "Piezas atemporales hechas con materiales de calidad, pensadas para durar más que una temporada.",
+        "eyebrow": "Nuevo — Soporte Magnético 360°",
+        "heading": "Conduce seguro, sin soltar tu teléfono",
+        "text": "Agarre magnético ultra fuerte que no se cae ni en curvas cerradas. Compatible con todos los teléfonos. Instalación en segundos.",
         "button_label": "Comprar ahora",
-        "button_link": "shopify://collections/all",
-        "button_label_2": "Ver colecciones",
-        "button_link_2": "shopify://collections"
+        "button_link": "shopify://products/soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
+        "button_label_2": "Ver especificaciones",
+        "button_link_2": "#specs"
       }
     },
     "trust": {
       "type": "icon-row",
       "blocks": {
-        "b1": { "type": "item", "settings": { "icon": "truck", "text": "Envío gratis desde $75" } },
-        "b2": { "type": "item", "settings": { "icon": "refresh", "text": "Devoluciones gratuitas en 30 días" } },
-        "b3": { "type": "item", "settings": { "icon": "shield", "text": "Pago 100% seguro" } },
-        "b4": { "type": "item", "settings": { "icon": "check", "text": "Calidad garantizada" } }
+        "b1": { "type": "item", "settings": { "icon": "shield", "text": "Agarre magnético ultra fuerte" } },
+        "b2": { "type": "item", "settings": { "icon": "check", "text": "Compatible con todos los teléfonos" } },
+        "b3": { "type": "item", "settings": { "icon": "truck", "text": "Envío rápido" } },
+        "b4": { "type": "item", "settings": { "icon": "refresh", "text": "Devolución garantizada 30 días" } }
       },
       "block_order": ["b1", "b2", "b3", "b4"]
     },
     "featured": {
       "type": "featured-collection",
       "settings": {
-        "eyebrow": "Seleccionado para ti",
-        "heading": "Más vendidos",
-        "subheading": "Los favoritos de nuestra comunidad, elegidos por su calidad y diseño.",
+        "eyebrow": "Nuestro producto estrella",
+        "heading": "Soporte Magnético para Auto",
+        "subheading": "Diseñado para que manejes con las dos manos en el volante y el teléfono siempre a la vista.",
         "collection": "all",
-        "products_to_show": 8
+        "products_to_show": 4
       }
     },
-    "collections": {
-      "type": "collection-list",
+    "steps": {
+      "type": "steps",
       "blocks": {
-        "c1": { "type": "collection", "settings": {} },
-        "c2": { "type": "collection", "settings": {} },
-        "c3": { "type": "collection", "settings": {} }
+        "s1": { "type": "step", "settings": { "title": "Limpia la superficie", "text": "Limpia el tablero de tu auto para lograr una adherencia perfecta." } },
+        "s2": { "type": "step", "settings": { "title": "Pega el soporte", "text": "El adhesivo de alta resistencia se fija sin dañar tu auto." } },
+        "s3": { "type": "step", "settings": { "title": "Coloca tu teléfono", "text": "El imán lo sujeta al instante. Ajusta el ángulo que necesites y listo." } }
       },
-      "block_order": ["c1", "c2", "c3"],
+      "block_order": ["s1", "s2", "s3"],
       "settings": {
-        "eyebrow": "Explora",
-        "heading": "Compra por categoría"
+        "eyebrow": "Fácil de usar",
+        "heading": "Instálalo en 3 pasos"
       }
     },
-    "story": {
-      "type": "image-with-text",
+    "specs": {
+      "type": "specs-table",
+      "blocks": {
+        "sp1": { "type": "spec", "settings": { "label": "Material", "value": "Aleación de aluminio + silicona antideslizante" } },
+        "sp2": { "type": "spec", "settings": { "label": "Fuerza magnética", "value": "Ultra potente — soporta hasta 1.5 kg" } },
+        "sp3": { "type": "spec", "settings": { "label": "Compatibilidad", "value": "Universal, teléfonos de 4 a 7 pulgadas" } },
+        "sp4": { "type": "spec", "settings": { "label": "Instalación", "value": "Adhesiva, sin dañar el auto" } },
+        "sp5": { "type": "spec", "settings": { "label": "Colores disponibles", "value": "Negro, Plata" } }
+      },
+      "block_order": ["sp1", "sp2", "sp3", "sp4", "sp5"],
       "settings": {
-        "eyebrow": "Nuestra historia",
-        "heading": "Hecho para durar",
-        "text": "Trabajamos con talleres locales y materiales responsables para crear productos honestos, sin atajos ni promesas vacías.",
-        "button_label": "Conoce más",
-        "button_link": "shopify://pages/about-us",
-        "layout": "default"
+        "eyebrow": "Detalles técnicos",
+        "heading": "Especificaciones",
+        "text": "Todo lo que necesitas saber antes de comprar."
       }
     },
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "t1": {
-          "type": "testimonial",
-          "settings": { "rating": 5, "quote": "La calidad superó mis expectativas. El envío fue rápido y el producto se ve aún mejor en persona.", "author": "María G." }
-        },
-        "t2": {
-          "type": "testimonial",
-          "settings": { "rating": 5, "quote": "Excelente atención al cliente y un empaque hermoso. Ya hice mi segundo pedido.", "author": "Carlos R." }
-        },
-        "t3": {
-          "type": "testimonial",
-          "settings": { "rating": 4, "quote": "Productos duraderos y con un diseño precioso. Totalmente recomendado.", "author": "Sofía L." }
-        }
+        "t1": { "type": "testimonial", "settings": { "rating": 5, "quote": "Ya no se me cae el teléfono ni en las curvas cerradas. Se instaló en menos de un minuto.", "author": "Diego M." } },
+        "t2": { "type": "testimonial", "settings": { "rating": 5, "quote": "Uso el GPS todo el día y el agarre sigue firme. Excelente compra.", "author": "Andrea P." } },
+        "t3": { "type": "testimonial", "settings": { "rating": 4, "quote": "Fácil de instalar y funciona con cualquier funda. Muy recomendado.", "author": "Luis R." } }
       },
       "block_order": ["t1", "t2", "t3"],
       "settings": {
@@ -81,11 +77,12 @@
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "question": "¿Cuánto tarda el envío?", "answer": "<p>Los pedidos se procesan en 1-2 días hábiles y llegan en 3-5 días hábiles dentro del país.</p>" } },
-        "q2": { "type": "question", "settings": { "question": "¿Puedo devolver mi pedido?", "answer": "<p>Sí, aceptamos devoluciones dentro de los 30 días posteriores a la compra, siempre que el producto esté sin usar.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "¿Qué métodos de pago aceptan?", "answer": "<p>Aceptamos las principales tarjetas de crédito y débito, además de otros métodos disponibles en el checkout.</p>" } }
+        "q1": { "type": "question", "settings": { "question": "¿Se cae en curvas cerradas o frenadas bruscas?", "answer": "<p>No. El imán de alta potencia sostiene el teléfono con firmeza incluso en curvas cerradas y frenadas bruscas.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "¿Es compatible con mi teléfono?", "answer": "<p>Sí, es universal para teléfonos de 4 a 7 pulgadas: iPhone, Android, Samsung y la mayoría de las marcas.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "¿Daña el tablero de mi auto?", "answer": "<p>No. El adhesivo es de alta resistencia pero no daña la superficie del auto al retirarlo correctamente.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "¿Cuánto tarda el envío?", "answer": "<p>El envío es rápido; recibirás actualizaciones de seguimiento en cuanto se despache tu pedido.</p>" } }
       },
-      "block_order": ["q1", "q2", "q3"],
+      "block_order": ["q1", "q2", "q3", "q4"],
       "settings": {
         "eyebrow": "Ayuda",
         "heading": "Preguntas frecuentes"
@@ -96,9 +93,9 @@
       "settings": {
         "eyebrow": "No te lo pierdas",
         "heading": "Únete a nuestra lista",
-        "text": "Sé el primero en enterarte de lanzamientos, ofertas exclusivas y novedades."
+        "text": "Recibe descuentos y novedades sobre nuestros accesorios para auto."
       }
     }
   },
-  "order": ["hero", "trust", "featured", "collections", "story", "testimonials", "faq", "newsletter"]
+  "order": ["hero", "trust", "featured", "steps", "specs", "testimonials", "faq", "newsletter"]
 }

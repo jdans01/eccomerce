@@ -1,0 +1,48 @@
+<div class="section-padding page-width">
+  <div class="section-header" style="justify-content:center;text-align:center;">
+    <div class="section-header__text" style="margin:0 auto;">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+  </div>
+
+  <div class="steps-grid">
+    {%- for block in section.blocks -%}
+      <div class="step-card" {{ block.shopify_attributes }}>
+        <div class="step-card__number">{{ forloop.index }}</div>
+        <h3 class="step-card__title">{{ block.settings.title }}</h3>
+        <p class="step-card__text">{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Pasos de uso",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Fácil de usar" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Instálalo en 3 pasos" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Limpia la superficie" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Limpia el tablero de tu auto para una adherencia perfecta." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pasos de uso",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}

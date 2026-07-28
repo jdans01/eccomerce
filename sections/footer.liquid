@@ -38,6 +38,14 @@
     {%- endfor -%}
   </div>
 
+  {%- if shop.policies.size > 0 -%}
+    <div class="site-footer__legal page-width">
+      {%- for policy in shop.policies -%}
+        <a href="{{ policy.url }}">{{ policy.title }}</a>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
   <div class="site-footer__bottom page-width">
     <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.
       {%- if section.settings.copyright_text != blank %} {{ section.settings.copyright_text }}{% else %} {{ 'general.footer.rights' | t }}{% endif -%}
@@ -74,7 +82,7 @@
       "name": "Texto / Acerca de",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "heading", "label": "Título", "default": "Aurora" },
+        { "type": "text", "id": "heading", "label": "Título", "default": "" },
         { "type": "textarea", "id": "text", "label": "Texto" }
       ]
     },

@@ -1,25 +1,25 @@
 {
   "current": {
-    "color_background": "#FAF7F2",
-    "color_background_secondary": "#F2EBDD",
-    "color_text": "#1C1B19",
-    "color_text_light": "#6B6459",
-    "color_border": "#E4DCCC",
-    "color_accent": "#C1502E",
+    "color_background": "#F5F7FA",
+    "color_background_secondary": "#E8ECF1",
+    "color_text": "#10151C",
+    "color_text_light": "#5B6472",
+    "color_border": "#D7DEE6",
+    "color_accent": "#2563EB",
     "color_accent_text": "#FFFFFF",
-    "color_success": "#3F6B4A",
-    "color_error": "#B33A3A",
-    "color_header_background": "#FAF7F2",
-    "color_header_text": "#1C1B19",
-    "color_footer_background": "#1C1B19",
-    "color_footer_text": "#F2EBDD",
-    "type_header_font": "playfair_display_n7",
+    "color_success": "#16A34A",
+    "color_error": "#E23744",
+    "color_header_background": "#10151C",
+    "color_header_text": "#F5F7FA",
+    "color_footer_background": "#0B0E13",
+    "color_footer_text": "#E8ECF1",
+    "type_header_font": "poppins_n7",
     "type_header_scale": 100,
-    "type_body_font": "assistant_n4",
+    "type_body_font": "inter_n4",
     "type_body_scale": 100,
     "page_max_width": 1320,
     "spacing_sections": 60,
-    "corner_radius": "14px",
+    "corner_radius": "6px",
     "card_image_ratio": "portrait",
     "card_show_vendor": true,
     "card_show_quick_add": true,
@@ -40,21 +40,21 @@
           "announcement-1": {
             "type": "announcement",
             "settings": {
-              "text": "Envío gratis en pedidos superiores a $75",
+              "text": "🚗 Agarre magnético 360° — nunca se cae",
               "link": ""
             }
           },
           "announcement-2": {
             "type": "announcement",
             "settings": {
-              "text": "Nueva colección disponible — descúbrela ahora",
+              "text": "Compatible con todos los teléfonos — envío rápido",
               "link": "shopify://collections/all"
             }
           },
           "announcement-3": {
             "type": "announcement",
             "settings": {
-              "text": "Devoluciones gratuitas durante 30 días",
+              "text": "⭐ Garantía de devolución de 30 días",
               "link": ""
             }
           }
@@ -82,8 +82,8 @@
           "about": {
             "type": "text",
             "settings": {
-              "heading": "Aurora",
-              "text": "Diseño consciente y materiales de calidad para tu día a día. Hecho para durar, pensado para ti."
+              "heading": "Nova",
+              "text": "Accesorios inteligentes para tu auto. Diseñados para que conduzcas seguro, sin complicaciones."
             }
           },
           "menu-1": {
