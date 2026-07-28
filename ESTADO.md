@@ -178,6 +178,32 @@ desorden/saturación visual.
 - Subido a Shopify vía `themeFilesUpsert`: `assets/base.css`. Tema
   verificado sin errores.
 
+## Título de producto apareciendo cortado bajo el header (última ronda)
+El usuario envió una captura de la página de producto donde el título se veía
+cortado en la parte superior, sin el encabezado visible encima — se veía
+desordenado. Intenté cargar la página en vivo con un navegador (Playwright)
+para diagnosticarlo con precisión, pero el acceso de red desde este entorno
+a la tienda real está bloqueado por la política del sandbox (confirmado con
+`ERR_TUNNEL_CONNECTION_FAILED` al intentar salir por el proxy configurado);
+no insistí en rodear esa restricción, como indican las reglas del entorno.
+Revisé el código estáticamente: no encontré overflow en los ancestros del
+header que rompiera su `position: sticky`, así que apliqué las correcciones
+defensivas estándar para esta clase de síntoma (contenido que parece
+saltar/recortarse justo debajo del header tras la carga):
+- `overflow-anchor: none;` en `html` — desactiva el "scroll anchoring" de
+  Chrome, que puede reajustar automáticamente la posición de scroll cuando
+  hay cambios de layout tras la carga (p. ej. al intercambiar la fuente web
+  por `font-display: swap`, o al actualizarse el contador del carrito).
+- `.site-header__inner` ahora tiene `min-height: 76px` para que el alto del
+  header nunca colapse o cambie bruscamente.
+- `.product-main` subió su `padding-top` de 40px a 56px para dar más aire
+  bajo el header en la página de producto.
+- Subido a Shopify vía `themeFilesUpsert`: `assets/base.css`. Tema
+  verificado sin errores.
+- **Pendiente de confirmación del usuario**: como no pude reproducir la
+  vista en vivo yo mismo, conviene que revise la página de producto de nuevo
+  tras esta subida y confirme si el problema desapareció.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -188,7 +214,8 @@ desorden/saturación visual.
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Foto de fondo del hero difuminada (blur) para evitar que el
-texto/flechas impresos en la infografía compitieran con el texto real del
-hero; scrim reequilibrado a un punto intermedio. Subido y verificado en el
-tema `188794273826` sin errores.
+2026-07-28 — Corrección defensiva del título de producto apareciendo
+cortado bajo el header: `overflow-anchor: none`, header con alto mínimo
+estable, más aire en `.product-main`. Pendiente de que el usuario confirme
+si se resolvió (no se pudo reproducir en vivo por restricción de red del
+entorno). Subido y verificado en el tema `188794273826` sin errores.
