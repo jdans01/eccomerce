@@ -62,6 +62,20 @@ adhesivas).
 `main-*` (producto, colección, carrito, búsqueda, 404, página, blog,
 artículo, lista de colecciones).
 
+## Bugs corregidos tras feedback del usuario
+- El filtro `font_face` de Shopify devuelve CSS crudo, no una etiqueta
+  `<style>` completa — sin envolverlo, el texto de las declaraciones
+  `@font-face` se filtraba como contenido visible al inicio de la página
+  (el navegador reubica texto suelto inválido dentro de `<head>` hacia el
+  `<body>`). Corregido envolviendo ambas llamadas en un único `<style>`.
+- La sección "spotlight" de la portada no mostraba ninguna foto real del
+  producto (usaba `image-with-text` con un `image_picker` vacío). Se creó
+  `sections/featured-product.liquid`, que en vez de una imagen estática usa
+  un selector de producto (`type: product`) y renderiza
+  `featured_product.featured_image` en vivo desde Shopify — esto no requiere
+  que el asistente descargue ninguna imagen, el navegador del cliente la pide
+  directamente al CDN de Shopify.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
