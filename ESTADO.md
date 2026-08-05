@@ -3,13 +3,27 @@
 ## Tienda
 - Dominio: `nova-284120.myshopify.com`
 - Panel: https://admin.shopify.com/store/nova-284120
-- Tema: **Aurora** — `gid://shopify/OnlineStoreTheme/188794273826` (sin publicar)
-- Vista previa: `https://nova-284120.myshopify.com/?preview_theme_id=188794273826`
-- Editor: `https://admin.shopify.com/store/nova-284120/themes/188794273826/editor`
-- Nota: el tema se recreó una vez durante esta sesión (el ID anterior,
-  `188759638050`, desapareció de la tienda — probablemente eliminado desde el
-  panel). Si vuelve a desaparecer, duplicar `Horizon` (tema MAIN) de nuevo con
-  `themeDuplicate` y repetir la subida de archivos con `themeFilesUpsert`.
+- Tema **PUBLICADO/en vivo**: **Aurora** — `gid://shopify/OnlineStoreTheme/188794273826`
+  (el usuario lo publicó él mismo desde el panel en algún punto de la sesión;
+  antes estaba "sin publicar"). Confirmado por `themes { role }` → `MAIN`.
+- Tema **borrador** (para cambios futuros): **Aurora - Borrador** —
+  `gid://shopify/OnlineStoreTheme/189110583330` (creado con `themeDuplicate`
+  a partir del tema en vivo, tras el fix del umbral de envío gratis).
+  Vista previa: `https://nova-284120.myshopify.com/?preview_theme_id=189110583330`
+  Editor: `https://admin.shopify.com/store/nova-284120/themes/189110583330/editor`
+- **IMPORTANTE — cambió el flujo de trabajo**: ahora que Aurora está
+  publicado, `themeFilesUpsert` contra `188794273826` (el tema en vivo) es
+  **rechazado por la política de seguridad del servidor MCP** ("Theme file
+  writes against the live storefront are blocked"). A partir de ahora, todo
+  cambio de código debe subirse a un tema **borrador** (duplicar el tema en
+  vivo con `themeDuplicate`, subir ahí los archivos) y luego darle al
+  usuario el enlace de vista previa para que **él mismo publique** el
+  borrador desde el panel de Shopify (Tienda online → Temas → ⋯ → Publicar).
+  El asistente no puede publicar automáticamente el tema en vivo.
+- Nota histórica: el tema se recreó una vez a media sesión (el ID anterior,
+  `188759638050`, desapareció de la tienda). Si un tema desaparece, duplicar
+  `Horizon` (tema MAIN original) de nuevo con `themeDuplicate` y repetir la
+  subida de archivos con `themeFilesUpsert`.
 
 ## Entorno de trabajo (importante)
 Esta sesión corre en un entorno remoto en la nube (Claude Code Remote), no en
@@ -307,6 +321,42 @@ El usuario pidió que las reseñas se desplazaran solas, con animación.
 - Subido a Shopify vía `themeFilesUpsert`: `sections/testimonials.liquid`,
   `assets/theme.js`, `templates/index.json`. Tema verificado sin errores.
 
+## Diagnóstico de conversión (visitas sin compras) — última ronda
+El usuario reportó tráfico real sin ventas. Se investigó con datos reales
+(no genéricos) vía Shopify Analytics/Admin API:
+- **99 sesiones en 30 días, 0% en cada paso del embudo** (0 agregados al
+  carrito, 0 checkouts iniciados, 0 completados) — el problema está ANTES
+  del checkout, no es abandono de carrito.
+- 91% del tráfico es "direct" y se concentra justo en los días en que se
+  trabajó en la tienda — probablemente gran parte es tráfico de prueba del
+  propio usuario, no clientes reales.
+- **Causa raíz más probable encontrada**: el precio del producto era
+  **$12.00 MXN** (~$0.65 USD) — un precio que parece un error de captura,
+  no un precio real de mercado. El usuario lo confirmó y lo corrigió a
+  **$250.00 MXN**.
+- Se verificó que el inventario NO estaba bloqueando las compras:
+  `inventoryItem.tracked: false` y `availableForSale: true` — el checkout
+  sí es funcional, el precio roto era el problema real.
+- **Bug real encontrado y corregido**: el umbral de envío gratis mostrado
+  en el carrito (`cart_free_shipping_threshold`) estaba en `"75"`, pero la
+  tarifa de envío gratis REAL configurada en Shopify (consultada vía
+  `deliveryProfiles`) requiere **$1,050 MXN**. Es decir, el carrito le
+  prometía envío gratis a cualquiera que llegara a $75 (casi cualquier
+  compra), pero al llegar al checkout real se le cobraban $150 MXN de
+  envío — una promesa falsa que genera abandono justo en el último paso.
+  Corregido a `"1050"` para que coincida con la tarifa real.
+- **Pendiente de decisión del usuario**: las 7 reseñas de "Opiniones" en la
+  portada son testimonios ficticios que el asistente escribió como
+  contenido de ejemplo/diseño. Con 0 pedidos reales hasta ahora, mostrarlos
+  como si fueran clientes reales es publicidad engañosa (riesgo legal y de
+  confianza). Se le preguntó al usuario qué hacer (quitarlos vs. dejarlos
+  genéricos) — aún no respondió esa parte.
+- **Cambio de flujo de trabajo**: como el tema ahora está publicado en
+  vivo, ya no se puede subir código directamente a él. Se duplicó a un
+  tema borrador (`189110583330`) y ahí se subió el fix del envío gratis.
+  El usuario debe publicar ese borrador manualmente para que el fix quede
+  en vivo (ver sección "Tienda" arriba).
+
 ## Pendiente / no hecho en esta sesión
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
 - [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
@@ -317,9 +367,9 @@ El usuario pidió que las reseñas se desplazaran solas, con animación.
       bueno del usuario)
 
 ## Última actualización
-2026-07-28 — Carrusel de opiniones con reproducción automática (loop suave,
-se pausa al interactuar, respeta accesibilidad). Pendiente: el usuario debe
-subir él mismo el logo "NOVA-MX" desde el editor de Shopify (Encabezado →
-Logo), ya que el asistente no tiene forma de tomar archivos pegados
-directamente en el chat en este entorno. Subido y verificado en el tema
-`188794273826` sin errores.
+2026-08-05 — Diagnóstico de conversión con datos reales: precio corregido
+por el usuario ($12→$250 MXN), bug del umbral de envío gratis corregido
+($75→$1050 para coincidir con la tarifa real). El tema ya está publicado en
+vivo, así que este fix se subió a un tema borrador (`189110583330`) — el
+usuario debe publicarlo manualmente. Pendiente: decisión sobre las reseñas
+ficticias, y subir el logo "NOVA-MX".
