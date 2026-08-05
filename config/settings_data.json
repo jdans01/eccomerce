@@ -26,7 +26,7 @@
     "card_enable_hover_image": true,
     "cart_type": "drawer",
     "cart_show_free_shipping": true,
-    "cart_free_shipping_threshold": "75",
+    "cart_free_shipping_threshold": "1050",
     "social_instagram": "",
     "social_facebook": "",
     "social_tiktok": "",
