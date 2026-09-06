@@ -1,29 +1,56 @@
-# Estado del proyecto — Tienda Nova
+# Estado del proyecto — Tienda RADIANT MX (antes "Nova")
+
+## ⚠️ PIVOTE DE MARCA (2026-09-06) — leer primero
+La tienda cambió de negocio por completo. Ya NO vende el soporte magnético
+para auto ("Nova"). Ahora es **RADIANT MX**, una marca de herramientas de
+belleza/cuidado capilar (alisadores, peines térmicos, masajeador infrarrojo).
+El nombre de la tienda en Shopify (`shop.name`) ya es "Radiant-Mx".
+
+## ⚠️ EL TEMA EN VIVO PERDIÓ TODO EL CÓDIGO PERSONALIZADO — CRÍTICO
+Durante esta sesión se descubrió que el tema que el usuario publicó
+("Aurora - Borrador", `gid://shopify/OnlineStoreTheme/189110583330`, aún
+con ese ID y nombre) **ya NO contiene ninguno de nuestros archivos
+personalizados** (`sections/hero.liquid`, `assets/base.css`, etc.) — en su
+lugar tiene el conjunto de archivos completo del tema genérico de Shopify
+**Horizon** (`component-mega-menu.css`, `cart-disclosure-modal.js`, etc.).
+Es decir: **la tienda en vivo ahora mismo muestra el tema por defecto de
+Shopify, no nuestro diseño**, aunque `settings_data.json` sí conserva nuestra
+paleta/copy (pero probablemente sin efecto, porque el `settings_schema.json`
+de Horizon usa IDs de ajuste distintos).
+- **Causa muy probable**: el tema duplicado seguía "vinculado" a su origen
+  (Horizon), y Shopify ofrece un aviso de "actualizar tema" para temas
+  derivados de temas de la tienda de temas. Si se acepta esa actualización,
+  Shopify **reemplaza todo el código** por la versión más reciente del tema
+  base, conservando como mucho `settings_data.json`.
+- **Instrucción crítica para el usuario, a repetir siempre que se le pida
+  publicar un borrador**: en Shopify admin → Tienda online → Temas, al lado
+  del tema borrador puede aparecer un botón/aviso de "Actualizar" además del
+  de "Publicar" — **debe usar solo "Publicar", nunca "Actualizar"**, o se
+  perderá todo el código de nuevo.
+- **Buena noticia**: el tema `Aurora` original (`gid://shopify/OnlineStoreTheme/188794273826`,
+  role `UNPUBLISHED`) seguía intacto con todo el código personalizado. Se
+  usó como base para reconstruir todo lo demás (ver abajo).
 
 ## Tienda
-- Dominio: `nova-284120.myshopify.com`
+- Dominio: `nova-284120.myshopify.com` (el nombre visible ya es "Radiant-Mx",
+  el dominio myshopify no cambió)
 - Panel: https://admin.shopify.com/store/nova-284120
-- Tema **PUBLICADO/en vivo**: **Aurora** — `gid://shopify/OnlineStoreTheme/188794273826`
-  (el usuario lo publicó él mismo desde el panel en algún punto de la sesión;
-  antes estaba "sin publicar"). Confirmado por `themes { role }` → `MAIN`.
-- Tema **borrador** (para cambios futuros): **Aurora - Borrador** —
-  `gid://shopify/OnlineStoreTheme/189110583330` (creado con `themeDuplicate`
-  a partir del tema en vivo, tras el fix del umbral de envío gratis).
-  Vista previa: `https://nova-284120.myshopify.com/?preview_theme_id=189110583330`
-  Editor: `https://admin.shopify.com/store/nova-284120/themes/189110583330/editor`
-- **IMPORTANTE — cambió el flujo de trabajo**: ahora que Aurora está
-  publicado, `themeFilesUpsert` contra `188794273826` (el tema en vivo) es
-  **rechazado por la política de seguridad del servidor MCP** ("Theme file
-  writes against the live storefront are blocked"). A partir de ahora, todo
-  cambio de código debe subirse a un tema **borrador** (duplicar el tema en
-  vivo con `themeDuplicate`, subir ahí los archivos) y luego darle al
-  usuario el enlace de vista previa para que **él mismo publique** el
-  borrador desde el panel de Shopify (Tienda online → Temas → ⋯ → Publicar).
-  El asistente no puede publicar automáticamente el tema en vivo.
-- Nota histórica: el tema se recreó una vez a media sesión (el ID anterior,
-  `188759638050`, desapareció de la tienda). Si un tema desaparece, duplicar
-  `Horizon` (tema MAIN original) de nuevo con `themeDuplicate` y repetir la
-  subida de archivos con `themeFilesUpsert`.
+- Tema **PUBLICADO/en vivo ahora mismo**: `gid://shopify/OnlineStoreTheme/189110583330`
+  ("Aurora - Borrador") — **corrupto, es el tema Horizon genérico** (ver
+  aviso arriba). Necesita ser reemplazado publicando el nuevo borrador.
+- **Tema borrador nuevo, listo para publicar** (con todo el rediseño de
+  RADIANT MX): `gid://shopify/OnlineStoreTheme/190280695842` (nombre
+  "RADIANT MX"), duplicado desde el `Aurora` original intacto
+  (`188794273826`).
+  Vista previa: `https://nova-284120.myshopify.com/?preview_theme_id=190280695842`
+  Editor: `https://admin.shopify.com/store/nova-284120/themes/190280695842/editor`
+- El `Aurora` original (`188794273826`, UNPUBLISHED) se conserva intacto
+  como respaldo — es la última copia 100% funcional con todos los archivos
+  personalizados, aunque con contenido viejo (Nova/soporte de auto).
+- **Flujo de trabajo** (sigue igual que antes): el tema en vivo nunca se
+  puede editar directamente (`themeFilesUpsert` lo rechaza). Todo cambio se
+  sube a un tema borrador, y el usuario debe publicarlo manualmente desde el
+  panel — **usando el botón "Publicar", nunca "Actualizar"**.
 
 ## Entorno de trabajo (importante)
 Esta sesión corre en un entorno remoto en la nube (Claude Code Remote), no en
@@ -40,7 +67,37 @@ en el chat, lo cual permitió validar/afinar la paleta y enriquecer los textos
 con detalles reales (rotación en 3 ejes, diseño plegable, almohadillas
 adhesivas).
 
-## Producto leído
+## Catálogo actual — RADIANT MX (vigente desde el pivote)
+3 productos reales y activos, todos vendor "RADIANT MX", en la colección
+`bestsellers-radiant` y `belleza-y-cuidado-personal` (ambas estaban vacías,
+se les agregaron los 3 productos durante esta ronda):
+1. **Cepillo Alisador Profesional con Tecnología Iónica** — $280.00 MXN —
+   `gid://shopify/Product/8622996062242` — handle
+   `cepillo-alisador-profesional-con-tecnologia-ionica` — 2 imágenes —
+   descripción con lista `<ul><li>` real (no emoji ✅).
+2. **Peine Térmico Profesional** — $200.00 MXN —
+   `gid://shopify/Product/8622996095010` — handle `peine-termico-profesional`
+   — 1 imagen.
+3. **Peine Masajeador Infrarrojo** — $572.00 MXN (el más caro, "flagship") —
+   `gid://shopify/Product/8622996160546` — handle
+   `peine-masajeador-infrarrojo` — 3 imágenes (usado en el spotlight y en la
+   galería `feature-grid` de la portada).
+- **OJO**: al buscar productos con `search_products` aparecían otros 3
+  productos (alisador de "Beauty At You", peine de "Eqwh Store", peine con
+  luz roja de "dropi") pero **no existen realmente** — fallan con
+  "Product not found" al consultarlos por ID directo o vía GraphQL
+  `products(...)`, y no tienen imágenes. Probablemente sobras de una
+  herramienta de importación que no se completó. Se excluyeron del sitio.
+  Si el usuario de verdad quiere venderlos, hay que crearlos/completarlos
+  primero.
+- Todos los productos tienen `inventoryItem.tracked: false` y
+  `availableForSale: true` — el checkout no está bloqueado por inventario.
+- Tarifas de envío reales configuradas en Shopify (`deliveryProfiles`):
+  Estándar $150 MXN, Exprés $195 MXN, envío gratis automático desde $1,050
+  MXN. El ajuste `cart_free_shipping_threshold` del tema ya se corrigió a
+  `"1050"` para que coincida.
+
+## Producto leído (HISTÓRICO — ya no aplica, ver arriba)
 - Título: "Soporte Magnético para Teléfono en Auto - Agarre Firme 360°"
 - ID: `gid://shopify/Product/8563793854498`
 - Handle: `soporte-magnetico-para-telefono-en-auto-agarre-firme-360`
@@ -358,18 +415,37 @@ El usuario reportó tráfico real sin ventas. Se investigó con datos reales
   en vivo (ver sección "Tienda" arriba).
 
 ## Pendiente / no hecho en esta sesión
-- [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red)
-- [ ] Fotos IA del producto (el usuario decidió mantener las del proveedor)
-- [ ] Título/descripción del catálogo: se dejaron los del usuario, no se
-      reescribieron (ya eran de buena calidad)
-- [ ] Revisión visual con navegador/capturas (no disponible en este entorno)
-- [ ] Publicar el tema como activo (queda sin publicar a la espera del visto
-      bueno del usuario)
+- [ ] **URGENTE**: el usuario debe publicar el tema `190280695842` ("RADIANT MX")
+      desde el panel — usando "Publicar", NUNCA "Actualizar" (ver aviso al
+      inicio del documento). Mientras no lo haga, la tienda en vivo sigue
+      mostrando el tema Horizon genérico, sin ningún diseño personalizado.
+- [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red
+      de este entorno)
+- [ ] Logo: pendiente desde antes del pivote (el usuario mostró un logo
+      "NOVA-MX" que ya no aplica — con la marca ahora siendo "RADIANT MX",
+      probablemente quiera un logo nuevo). El campo de logo del header sigue
+      vacío (usa el texto "Radiant-Mx" por defecto vía `shop.name`).
+- [ ] Los 3 productos "fantasma" (Beauty At You / Eqwh Store / dropi) que
+      aparecen en búsquedas pero no existen realmente — confirmar con el
+      usuario si los quiere crear de verdad o son basura de una app de
+      importación a limpiar.
+- [ ] Las reseñas de "Opiniones" siguen siendo contenido de ejemplo escrito
+      por el asistente (ahora reescritas para productos de cabello) — no son
+      compras reales. Reemplazar por reseñas reales en cuanto existan.
+- [ ] Revisión visual con navegador/capturas (no disponible en este entorno,
+      restricción de red del sandbox)
 
 ## Última actualización
-2026-08-05 — Diagnóstico de conversión con datos reales: precio corregido
-por el usuario ($12→$250 MXN), bug del umbral de envío gratis corregido
-($75→$1050 para coincidir con la tarifa real). El tema ya está publicado en
-vivo, así que este fix se subió a un tema borrador (`189110583330`) — el
-usuario debe publicarlo manualmente. Pendiente: decisión sobre las reseñas
-ficticias, y subir el logo "NOVA-MX".
+2026-09-06 — **Pivote completo de marca**: la tienda pasó de "Nova"
+(soporte de teléfono para auto) a "RADIANT MX" (herramientas de belleza y
+cuidado capilar). Se descubrió que el tema publicado había perdido todo su
+código personalizado (reemplazado por Horizon genérico, probablemente por
+una "actualización de tema" aceptada en el panel) — el tema `Aurora`
+original seguía intacto y se usó para reconstruir todo. Se pobló las
+colecciones vacías con los 3 productos reales, se generalizó la lista de
+características del producto para aceptar descripciones con `<ul><li>` real
+(no solo el patrón ✅), se rediseñó toda la portada (hero, franja de
+confianza, colección destacada, spotlight, galería, testimonios, FAQ) con
+copy y paleta de colores (azul marino/vivo) acordes a la nueva marca. Todo
+subido y verificado sin errores en el tema borrador `190280695842` — falta
+que el usuario lo publique (con "Publicar", no "Actualizar").
