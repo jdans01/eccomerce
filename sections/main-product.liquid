@@ -60,20 +60,28 @@
 
       {%- if product.description != blank -%}
         {%- liquid
-          assign clean_description = product.description | strip_html | strip_newlines
-          assign description_items = clean_description | split: '✅'
+          assign feature_items = blank
+          assign skip_first_item = false
+          if product.description contains '✅'
+            assign feature_items = product.description | strip_html | strip_newlines | split: '✅'
+          elsif product.description contains '<li>'
+            assign feature_items = product.description | split: '<li>'
+            assign skip_first_item = true
+          endif
         -%}
-        {%- if description_items.size > 1 -%}
+        {%- if feature_items != blank and feature_items.size > 1 -%}
           <ul class="product-info__feature-list">
-            {%- for item in description_items -%}
-              {%- assign trimmed_item = item | strip -%}
-              {%- if trimmed_item != blank -%}
-                <li>{% render 'icon', name: 'check' %}<span>{{ trimmed_item }}</span></li>
-              {%- endif -%}
+            {%- for item in feature_items -%}
+              {%- unless skip_first_item and forloop.first -%}
+                {%- assign trimmed_item = item | strip_html | strip_newlines | strip -%}
+                {%- if trimmed_item != blank -%}
+                  <li>{% render 'icon', name: 'check' %}<span>{{ trimmed_item }}</span></li>
+                {%- endif -%}
+              {%- endunless -%}
             {%- endfor -%}
           </ul>
         {%- else -%}
-          <div class="product-info__description">{{ clean_description | truncatewords: 40 }}</div>
+          <div class="product-info__description">{{ product.description | strip_html | truncatewords: 40 }}</div>
         {%- endif -%}
       {%- endif -%}
 

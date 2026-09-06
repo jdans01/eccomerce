@@ -1,27 +1,27 @@
 {
   "current": {
-    "color_background": "#0B0D11",
-    "color_background_secondary": "#161920",
-    "color_text": "#F4F5F7",
-    "color_text_light": "#9BA3AF",
-    "color_border": "#262B33",
-    "color_accent": "#FF7A29",
-    "color_accent_text": "#0B0D11",
+    "color_background": "#071A33",
+    "color_background_secondary": "#0B2545",
+    "color_text": "#F4F8FC",
+    "color_text_light": "#9FB3CC",
+    "color_border": "#1C3A5E",
+    "color_accent": "#1479FF",
+    "color_accent_text": "#FFFFFF",
     "color_success": "#22C55E",
     "color_error": "#F04438",
-    "color_header_background": "#0B0D11",
-    "color_header_text": "#F4F5F7",
-    "color_footer_background": "#000000",
-    "color_footer_text": "#C8CDD5",
+    "color_header_background": "#071A33",
+    "color_header_text": "#F4F8FC",
+    "color_footer_background": "#04101F",
+    "color_footer_text": "#A9C2DE",
     "type_header_font": "poppins_n7",
     "type_header_scale": 100,
     "type_body_font": "inter_n4",
     "type_body_scale": 100,
     "page_max_width": 1320,
     "spacing_sections": 72,
-    "corner_radius": "0px",
+    "corner_radius": "18px",
     "card_image_ratio": "square",
-    "card_show_vendor": true,
+    "card_show_vendor": false,
     "card_show_quick_add": true,
     "card_enable_hover_image": true,
     "cart_type": "drawer",
@@ -40,21 +40,21 @@
           "announcement-1": {
             "type": "announcement",
             "settings": {
-              "text": "Sujeción magnética de grado industrial — nunca se cae",
+              "text": "Tecnología profesional de belleza, ahora en casa",
               "link": ""
             }
           },
           "announcement-2": {
             "type": "announcement",
             "settings": {
-              "text": "Compatible con todos los teléfonos — envío rápido y rastreado",
-              "link": "shopify://collections/all"
+              "text": "Envío gratis en compras mayores a $1,050 MXN",
+              "link": "shopify://collections/belleza-y-cuidado-personal"
             }
           },
           "announcement-3": {
             "type": "announcement",
             "settings": {
-              "text": "Garantía de devolución de 30 días",
+              "text": "Garantía de hasta 2 años en toda la línea",
               "link": ""
             }
           }
@@ -82,8 +82,8 @@
           "about": {
             "type": "text",
             "settings": {
-              "heading": "Nova",
-              "text": "Accesorios de precisión para tu auto, diseñados para que conduzcas con total concentración."
+              "heading": "RADIANT MX",
+              "text": "Tecnología profesional de belleza y cuidado capilar, diseñada para que brilles todos los días."
             }
           },
           "menu-1": {

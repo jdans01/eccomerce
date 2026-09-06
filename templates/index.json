@@ -3,104 +3,71 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "product": "soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
-        "eyebrow": "Ingeniería en cada detalle",
-        "heading": "Tu teléfono, siempre a la vista. Tus manos, siempre en el volante.",
-        "text": "Sujeción magnética con ajuste en tres ejes, diseñada para resistir curvas, frenadas y baches — sin vibrar, sin caerse.",
+        "product": "cepillo-alisador-profesional-con-tecnologia-ionica",
+        "eyebrow": "Belleza profesional, en casa",
+        "heading": "Alisado perfecto, sin dañar tu cabello",
+        "text": "Tecnología iónica y cerámica de alta calidad que transforma tu rutina de belleza en minutos — para todo tipo de cabello.",
         "button_label": "Comprar ahora",
-        "button_link": "shopify://products/soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
-        "button_label_2": "Cómo funciona",
-        "button_link_2": "#steps"
-      }
-    },
-    "showcase": {
-      "type": "video-showcase",
-      "settings": {
-        "product": "soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
-        "eyebrow": "Míralo en acción",
-        "heading": "Firme incluso en el camino más exigente",
-        "text": "Instalación en segundos, agarre magnético que no cede y un giro de 360° para el ángulo perfecto.",
-        "button_label": "Comprar ahora"
+        "button_link": "shopify://products/cepillo-alisador-profesional-con-tecnologia-ionica",
+        "button_label_2": "Ver colección completa",
+        "button_link_2": "/collections/belleza-y-cuidado-personal"
       }
     },
     "trust": {
       "type": "icon-row",
       "blocks": {
-        "b1": { "type": "item", "settings": { "icon": "refresh", "text": "Ajuste libre en tres ejes: 180° / 360° / 180°" } },
-        "b2": { "type": "item", "settings": { "icon": "check", "text": "Compatible con cualquier teléfono" } },
-        "b3": { "type": "item", "settings": { "icon": "shield", "text": "Aluminio y silicona de grado industrial" } },
-        "b4": { "type": "item", "settings": { "icon": "truck", "text": "Envío rápido y rastreado" } }
+        "b1": { "type": "item", "settings": { "icon": "refresh", "text": "Tecnología iónica profesional" } },
+        "b2": { "type": "item", "settings": { "icon": "shield", "text": "Cerámica de alta calidad, sin dañar tu cabello" } },
+        "b3": { "type": "item", "settings": { "icon": "check", "text": "3 niveles de temperatura ajustables" } },
+        "b4": { "type": "item", "settings": { "icon": "truck", "text": "Envío rápido y rastreado en todo México" } }
       },
       "block_order": ["b1", "b2", "b3", "b4"]
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Nuestra línea",
+        "heading": "Tecnología profesional para tu cabello",
+        "subheading": "Herramientas diseñadas para resultados de salón, en casa.",
+        "collection": "bestsellers-radiant",
+        "products_to_show": 4
+      }
     },
     "spotlight": {
       "type": "image-with-text",
       "settings": {
-        "product": "soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
-        "image_index": 4,
-        "layout": "default",
-        "eyebrow": "Acabado premium",
-        "heading": "Negro elegante, agarre inquebrantable",
-        "text": "Terminado en Cool Black con imanes de rubidio N52 — la fuerza magnética que necesitas, con la estética que se ve bien en cualquier auto.",
+        "product": "peine-masajeador-infrarrojo",
+        "image_index": 1,
+        "layout": "reverse",
+        "eyebrow": "Ritual de bienestar",
+        "heading": "Un masaje capilar que se siente como spa",
+        "text": "El calor infrarrojo penetra profundamente estimulando la circulación del cuero cabelludo, mientras el masaje de vibración en 5 velocidades relaja y revitaliza — reduce la caspa y la irritación con cada uso.",
         "button_label": "Comprar ahora",
-        "button_link": "shopify://products/soporte-magnetico-para-telefono-en-auto-agarre-firme-360"
+        "button_link": "shopify://products/peine-masajeador-infrarrojo"
       }
     },
     "features": {
       "type": "feature-grid",
       "settings": {
-        "product": "soporte-magnetico-para-telefono-en-auto-agarre-firme-360",
+        "product": "peine-masajeador-infrarrojo",
         "eyebrow": "Cada detalle cuenta",
-        "heading": "Tecnología pensada para durar",
-        "text": "Ajuste en tres ejes, imanes de rubidio N52 y rotación bidireccional de 360° — diseñado para que nunca se caiga."
-      }
-    },
-    "specs": {
-      "type": "specs-table",
-      "blocks": {
-        "sp1": { "type": "spec", "settings": { "label": "Material", "value": "Aleación de aluminio + silicona antideslizante" } },
-        "sp2": { "type": "spec", "settings": { "label": "Rotación", "value": "3 ejes independientes — 180° / 360° / 180°" } },
-        "sp3": { "type": "spec", "settings": { "label": "Diseño", "value": "Plegable, compacto y portátil" } },
-        "sp4": { "type": "spec", "settings": { "label": "Imanes", "value": "Rubidio N52 de alta potencia — soporta hasta 1.5 kg" } },
-        "sp5": { "type": "spec", "settings": { "label": "Compatibilidad", "value": "Universal, teléfonos de 4 a 7 pulgadas" } },
-        "sp6": { "type": "spec", "settings": { "label": "Instalación", "value": "Base con almohadillas adhesivas, sin dañar el auto" } },
-        "sp7": { "type": "spec", "settings": { "label": "Colores disponibles", "value": "Negro, Plata" } }
-      },
-      "block_order": ["sp1", "sp2", "sp3", "sp4", "sp5", "sp6", "sp7"],
-      "settings": {
-        "eyebrow": "Ficha técnica",
-        "heading": "Especificaciones",
-        "text": "Lo que necesitas saber antes de instalarlo."
-      }
-    },
-    "steps": {
-      "type": "steps",
-      "blocks": {
-        "s1": { "type": "step", "settings": { "title": "Limpia la superficie", "text": "Desengrasa el tablero de tu auto para lograr una fijación óptima." } },
-        "s2": { "type": "step", "settings": { "title": "Fija la base", "text": "Las almohadillas adhesivas se fijan al instante, sin dañar tu auto." } },
-        "s3": { "type": "step", "settings": { "title": "Ajusta y bloquea", "text": "Gira el aro a tu ángulo ideal en tres ejes y bloquéalo con la perilla." } }
-      },
-      "block_order": ["s1", "s2", "s3"],
-      "settings": {
-        "eyebrow": "En menos de un minuto",
-        "heading": "Instálalo en 3 pasos"
+        "heading": "Diseñado para el cuidado diario",
+        "text": "Diseño ergonómico antideslizante, calor infrarrojo uniforme y vibración suave — todo en una sola herramienta."
       }
     },
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "t1": { "type": "testimonial", "settings": { "rating": 5, "quote": "Ya no se me cae el teléfono ni en las curvas cerradas. Se instaló en menos de un minuto.", "author": "Diego M." } },
-        "t2": { "type": "testimonial", "settings": { "rating": 5, "quote": "Uso el GPS todo el día y el agarre sigue firme. El ajuste en tres ejes es un lujo.", "author": "Andrea P." } },
-        "t3": { "type": "testimonial", "settings": { "rating": 4, "quote": "Se pliega cuando no lo uso y no estorba. Muy recomendado.", "author": "Luis R." } },
-        "t4": { "type": "testimonial", "settings": { "rating": 5, "quote": "Lo probé en caminos con baches y ni se inmuta. El imán es brutal, de verdad no se despega.", "author": "Roberto S." } },
-        "t5": { "type": "testimonial", "settings": { "rating": 5, "quote": "Súper fácil de instalar. En menos de un minuto ya estaba usando el GPS sin tener que sostener el teléfono.", "author": "Camila V." } },
-        "t6": { "type": "testimonial", "settings": { "rating": 4, "quote": "Sostiene mi teléfono grande sin problema, incluso con funda gruesa no se cae.", "author": "Fernando T." } },
-        "t7": { "type": "testimonial", "settings": { "rating": 5, "quote": "El diseño plegable me encantó, no estorba cuando no lo uso y se ve muy resistente.", "author": "Paola H." } }
+        "t1": { "type": "testimonial", "settings": { "rating": 5, "quote": "Mi cabello quedó liso y con brillo desde el primer uso, sin sentir que el calor dañara la fibra capilar.", "author": "Daniela R." } },
+        "t2": { "type": "testimonial", "settings": { "rating": 5, "quote": "El peine térmico desenreda hasta el cabello más rizado sin jalones. Ya es parte de mi rutina diaria.", "author": "Camila G." } },
+        "t3": { "type": "testimonial", "settings": { "rating": 4, "quote": "El masajeador infrarrojo se siente increíble, como una sesión de spa en casa.", "author": "Valeria M." } },
+        "t4": { "type": "testimonial", "settings": { "rating": 5, "quote": "Tres niveles de temperatura para adaptarlo a mi tipo de cabello — el resultado dura todo el día.", "author": "Renata L." } },
+        "t5": { "type": "testimonial", "settings": { "rating": 5, "quote": "Llegó rápido y la calidad se siente profesional, muy distinto a otros que había probado antes.", "author": "Ximena P." } }
       },
-      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6", "t7"],
+      "block_order": ["t1", "t2", "t3", "t4", "t5"],
       "settings": {
         "eyebrow": "Opiniones",
-        "heading": "Lo que dicen nuestros clientes",
+        "heading": "Lo que dicen nuestras clientas",
         "autoplay": true,
         "autoplay_speed": 5
       }
@@ -108,11 +75,11 @@
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "question": "¿Se cae en curvas cerradas o frenadas bruscas?", "answer": "<p>No. El imán de alta potencia sostiene el teléfono con firmeza incluso en curvas cerradas y frenadas bruscas.</p>" } },
-        "q2": { "type": "question", "settings": { "question": "¿Cómo ajusto el ángulo?", "answer": "<p>El soporte gira en tres ejes independientes (180° / 360° / 180°). Ajusta el ángulo que necesites y bloquéalo girando la perilla.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "¿Es compatible con mi teléfono?", "answer": "<p>Sí, es universal para teléfonos de 4 a 7 pulgadas: iPhone, Android, Samsung y la mayoría de las marcas.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "¿Daña el tablero de mi auto?", "answer": "<p>No. Las almohadillas adhesivas se fijan con firmeza pero no dañan la superficie del auto al retirarlas correctamente.</p>" } },
-        "q5": { "type": "question", "settings": { "question": "¿Cuánto tarda el envío?", "answer": "<p>El envío es rápido; recibirás actualizaciones de seguimiento en cuanto se despache tu pedido.</p>" } }
+        "q1": { "type": "question", "settings": { "question": "¿Es seguro para cabello teñido o dañado?", "answer": "<p>Sí. Los 3 niveles de temperatura ajustables te permiten elegir el calor adecuado según tu tipo de cabello, incluso si está teñido, decolorado o dañado.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "¿Funciona en todo tipo de cabello?", "answer": "<p>Sí, la tecnología iónica y de cerámica está diseñada para cabello liso, ondulado, rizado y afro por igual.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "¿Cuánto dura la garantía?", "answer": "<p>Nuestros productos de cuidado capilar incluyen garantía de hasta 2 años contra defectos de fabricación.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "¿Cómo lo limpio y mantengo?", "answer": "<p>Limpia la superficie con un paño húmedo una vez que el aparato esté frío. Evita sumergirlo en agua.</p>" } },
+        "q5": { "type": "question", "settings": { "question": "¿Cuánto tarda el envío?", "answer": "<p>El envío estándar tiene un costo de $150 MXN y es gratis en compras mayores a $1,050 MXN. Recibirás un número de rastreo en cuanto se despache tu pedido.</p>" } }
       },
       "block_order": ["q1", "q2", "q3", "q4", "q5"],
       "settings": {
@@ -123,11 +90,11 @@
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "eyebrow": "Mantente conectado",
+        "eyebrow": "Mantente conectada",
         "heading": "Súmate a la lista",
-        "text": "Descuentos y lanzamientos de nuevos accesorios para tu auto."
+        "text": "Tips de belleza, lanzamientos y ofertas exclusivas para tu rutina de cuidado capilar."
       }
     }
   },
-  "order": ["hero", "showcase", "trust", "spotlight", "features", "specs", "steps", "testimonials", "faq", "newsletter"]
+  "order": ["hero", "trust", "featured", "spotlight", "features", "testimonials", "faq", "newsletter"]
 }
