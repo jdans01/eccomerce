@@ -37,20 +37,29 @@ de Horizon usa IDs de ajuste distintos).
 - Panel: https://admin.shopify.com/store/nova-284120
 - Tema **PUBLICADO/en vivo ahora mismo**: `gid://shopify/OnlineStoreTheme/189110583330`
   ("Aurora - Borrador") — **corrupto, es el tema Horizon genérico** (ver
-  aviso arriba). Necesita ser reemplazado publicando el nuevo borrador.
-- **Tema borrador nuevo, listo para publicar** (con todo el rediseño de
-  RADIANT MX): `gid://shopify/OnlineStoreTheme/190280695842` (nombre
-  "RADIANT MX"), duplicado desde el `Aurora` original intacto
+  aviso arriba). El usuario intentó publicar el correcto pero **republicó
+  este mismo tema corrupto por segunda vez** (ver ronda "Segunda
+  republicación equivocada" más abajo) — sigue siendo el que está en vivo.
+- **Tema borrador correcto, listo para publicar** (con todo el rediseño de
+  RADIANT MX): `gid://shopify/OnlineStoreTheme/190280695842`, **renombrado
+  a "✅ RADIANT MX - PUBLICAR ESTE"** (antes se llamaba solo "RADIANT MX",
+  lo que causó la confusión) — duplicado desde el `Aurora` original intacto
   (`188794273826`).
   Vista previa: `https://nova-284120.myshopify.com/?preview_theme_id=190280695842`
   Editor: `https://admin.shopify.com/store/nova-284120/themes/190280695842/editor`
+- Existe además un borrador **inútil y fácil de confundir**:
+  `gid://shopify/OnlineStoreTheme/190280630306`, **renombrado a
+  "❌ NO USAR - tema corrupto"** — es un duplicado hecho por error a partir
+  del tema `189110583330` ya corrupto (Horizon genérico), no tiene ningún
+  archivo personalizado. No usar bajo ningún concepto.
 - El `Aurora` original (`188794273826`, UNPUBLISHED) se conserva intacto
   como respaldo — es la última copia 100% funcional con todos los archivos
   personalizados, aunque con contenido viejo (Nova/soporte de auto).
 - **Flujo de trabajo** (sigue igual que antes): el tema en vivo nunca se
   puede editar directamente (`themeFilesUpsert` lo rechaza). Todo cambio se
   sube a un tema borrador, y el usuario debe publicarlo manualmente desde el
-  panel — **usando el botón "Publicar", nunca "Actualizar"**.
+  panel — **usando el botón "Publicar", nunca "Actualizar"**, y buscando el
+  tema exactamente por el nombre **"✅ RADIANT MX - PUBLICAR ESTE"**.
 
 ## Entorno de trabajo (importante)
 Esta sesión corre en un entorno remoto en la nube (Claude Code Remote), no en
@@ -414,11 +423,42 @@ El usuario reportó tráfico real sin ventas. Se investigó con datos reales
   El usuario debe publicar ese borrador manualmente para que el fix quede
   en vivo (ver sección "Tienda" arriba).
 
+## Segunda republicación equivocada + nombre de marca literal (última ronda)
+El usuario avisó "Ya publiqué, pero dale RADIANT MX tal cual". Al revisar
+`themes(first: 10)`, el tema en vivo (`role: MAIN`) seguía siendo
+`189110583330` ("Aurora - Borrador"), el mismo tema **corrupto** (Horizon
+genérico) de antes — es decir, el usuario volvió a publicar el tema
+equivocado por segunda vez, probablemente por la confusión de tener dos
+borradores con nombres parecidos ("RADIANT MX" y "RADIANT MX - Borrador",
+este último resultó ser un duplicado inútil hecho por error a partir del
+tema ya corrupto).
+- **Fix de causa raíz (confusión de nombres)**: se renombraron ambos temas
+  vía `themeUpdate` para que sea imposible confundirlos:
+  - `190280630306` → `"❌ NO USAR - tema corrupto"` (el duplicado malo)
+  - `190280695842` → `"✅ RADIANT MX - PUBLICAR ESTE"` (el correcto, con
+    todo el rediseño)
+- **Nombre de marca literal en el encabezado**: el usuario pidió que se
+  muestre "RADIANT MX" tal cual (no depender de `shop.name`, que en
+  Shopify es literalmente "Radiant-Mx", con guion y minúsculas distintas).
+  - `sections/header.liquid`: nuevo ajuste de texto `brand_wordmark`
+    (default `"RADIANT MX"`), usado como `{{ section.settings.brand_wordmark
+    | default: shop.name }}` en el logo de texto (cuando no hay imagen de
+    logo cargada).
+  - `config/settings_data.json`: agregado `"brand_wordmark": "RADIANT MX"`
+    dentro de `sections.header.settings`.
+- Subido a Shopify vía `themeFilesUpsert` al tema correcto
+  (`190280695842` / "✅ RADIANT MX - PUBLICAR ESTE"): `sections/header.liquid`,
+  `config/settings_data.json`. Tema verificado sin errores
+  (`processing: false, processingFailed: false`).
+
 ## Pendiente / no hecho en esta sesión
-- [ ] **URGENTE**: el usuario debe publicar el tema `190280695842` ("RADIANT MX")
-      desde el panel — usando "Publicar", NUNCA "Actualizar" (ver aviso al
-      inicio del documento). Mientras no lo haga, la tienda en vivo sigue
-      mostrando el tema Horizon genérico, sin ningún diseño personalizado.
+- [ ] **URGENTE**: el usuario debe publicar el tema llamado exactamente
+      **"✅ RADIANT MX - PUBLICAR ESTE"** (`190280695842`) desde el panel —
+      usando "Publicar", NUNCA "Actualizar" (ver aviso al inicio del
+      documento). Ya publicó dos veces el tema equivocado por confusión de
+      nombres; los temas se renombraron para evitar un tercer error.
+      Mientras no lo haga, la tienda en vivo sigue mostrando el tema
+      Horizon genérico, sin ningún diseño personalizado.
 - [ ] Favicon (bloqueado: no se pueden subir imágenes por restricción de red
       de este entorno)
 - [ ] Logo: pendiente desde antes del pivote (el usuario mostró un logo
@@ -436,6 +476,14 @@ El usuario reportó tráfico real sin ventas. Se investigó con datos reales
       restricción de red del sandbox)
 
 ## Última actualización
+2026-09-07 — El usuario republicó por segunda vez el tema equivocado
+(corrupto). Se renombraron los dos borradores en disputa para eliminar la
+ambigüedad (`"❌ NO USAR - tema corrupto"` / `"✅ RADIANT MX - PUBLICAR
+ESTE"`) y se agregó un ajuste `brand_wordmark` para que el encabezado
+muestre "RADIANT MX" literal en vez de `shop.name` ("Radiant-Mx"). Subido y
+verificado sin errores en el tema `190280695842`. Sigue pendiente que el
+usuario publique ese tema exacto por su nuevo nombre.
+
 2026-09-06 — **Pivote completo de marca**: la tienda pasó de "Nova"
 (soporte de teléfono para auto) a "RADIANT MX" (herramientas de belleza y
 cuidado capilar). Se descubrió que el tema publicado había perdido todo su
