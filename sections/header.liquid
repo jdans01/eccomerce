@@ -32,7 +32,7 @@
           loading="eager"
         >
       {%- else -%}
-        {{ shop.name }}
+        {{ section.settings.brand_wordmark | default: shop.name }}
       {%- endif -%}
     </a>
 
@@ -95,6 +95,12 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "brand_wordmark",
+      "label": "Nombre de marca (si no hay logo)",
+      "default": "RADIANT MX"
     },
     {
       "type": "range",
