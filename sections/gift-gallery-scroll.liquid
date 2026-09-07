@@ -1,0 +1,63 @@
+<div class="gift-gallery-scroll" data-gift-gallery style="--gift-gallery-height: {{ section.settings.scene_height | default: 220 }}vh;">
+  <div class="gift-gallery-scroll__stage" data-gift-gallery-stage>
+    <div class="gift-gallery-scroll__glow" aria-hidden="true"></div>
+
+    <div class="gift-gallery-scroll__header page-width">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="eyebrow reveal is-visible">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="gift-gallery-scroll__heading reveal is-visible">
+        {{ section.settings.heading }}
+        {%- if section.settings.accent_word != blank -%}
+          <em class="gift-box-scroll__accent">{{ section.settings.accent_word }}</em>
+        {%- endif -%}
+      </h2>
+      {%- if section.settings.text != blank -%}
+        <p class="gift-gallery-scroll__text reveal is-visible">{{ section.settings.text }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="gift-gallery-scroll__track" data-gift-gallery-track>
+      {%- for block in section.blocks -%}
+        {%- assign item_product = block.settings.product -%}
+        {%- if item_product != blank -%}
+          <a href="{{ item_product.url }}" class="gift-gallery-card" {{ block.shopify_attributes }}>
+            {%- if item_product.featured_image -%}
+              <img src="{{ item_product.featured_image | image_url: width: 900 }}" alt="{{ item_product.featured_image.alt | escape }}" loading="lazy" width="450" height="600">
+            {%- endif -%}
+            <span class="gift-gallery-card__scrim" aria-hidden="true"></span>
+            <span class="gift-gallery-card__row">
+              <span class="gift-gallery-card__name">{{ item_product.title }}</span>
+              <span class="gift-gallery-card__price">{{ item_product.price | money }}</span>
+            </span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Galería horizontal",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Nuestra línea" },
+    { "type": "text", "id": "heading", "label": "Título (antes de la palabra destacada)", "default": "Cada pieza," },
+    { "type": "text", "id": "accent_word", "label": "Palabra destacada (cursiva, color de acento)", "default": "tuya" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Las mismas piezas que salieron de la caja — porque el mejor regalo es el que te das tú misma." },
+    { "type": "range", "id": "scene_height", "label": "Altura del recorrido de scroll (escritorio)", "min": 160, "max": 320, "step": 20, "unit": "vh", "default": 220 }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Producto",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Producto" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Galería horizontal" }
+  ]
+}
+{% endschema %}

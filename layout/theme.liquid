@@ -22,6 +22,7 @@
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
   {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'gift-scroll.css' | asset_url | stylesheet_tag }}
 
   <style>
     {{ settings.type_header_font | font_face: font_display: 'swap' }}
@@ -90,5 +91,6 @@
     };
   </script>
   {{ 'theme.js' | asset_url | script_tag }}
+  {{ 'gift-scroll.js' | asset_url | script_tag }}
 </body>
 </html>

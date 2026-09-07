@@ -451,6 +451,69 @@ tema ya corrupto).
   `config/settings_data.json`. Tema verificado sin errores
   (`processing: false, processingFailed: false`).
 
+## Caja de regalo + galería horizontal con scroll (última ronda)
+El usuario intentó invocar un comando de skill inexistente
+(`/frontend-design:frontend-design`) y pegó accidentalmente un spec técnico
+completo (React 19 + Vite + GSAP/Framer Motion) para un sitio de lujo
+distinto (bolsos/tacones/perfume ficticios, marca "RADIANT-MX" de moda, no
+la tienda real de cuidado capilar). Se le preguntó qué hacer con ese spec:
+confirmó **usar solo el estilo/efecto, aplicado a los productos reales de su
+tienda**, y que reemplace el inicio actual (hero + franja de confianza +
+spotlight) manteniendo el resto (testimonios, FAQ, newsletter).
+- El sitio sigue siendo el tema Shopify Liquid (no se creó ningún proyecto
+  React aparte, conforme a la decisión previa de reconstruir el tema
+  existente). Los efectos del spec (caja de regalo que se abre y dispersa
+  productos al hacer scroll + galería horizontal con "scroll-jacking") se
+  reimplementaron con **JS vanilla + CSS** (mismo patrón que el resto del
+  tema: sin GSAP, sin React, sin librerías externas) para no introducir una
+  dependencia y un stack ajenos al resto de la tienda.
+- **Nuevas secciones** (100% editables desde el editor de Shopify, con
+  selector de producto por bloque, igual patrón que el resto del tema):
+  - `sections/gift-box-scroll.liquid`: escena con scroll sticky (300vh+) —
+    una caja de regalo construida en CSS puro (sin imágenes externas) cuya
+    tapa se levanta y desvanece según el progreso de scroll, mientras los 3
+    productos reales se dispersan hacia afuera con su foto, nombre y precio
+    en vivo desde Shopify.
+  - `sections/gift-gallery-scroll.liquid`: galería horizontal con "scroll
+    jacking" en escritorio (la sección se fija con `position: sticky` y la
+    fila de tarjetas se traduce horizontalmente según el progreso de scroll
+    de la sección, sin pin real de altura dinámica al estilo GSAP
+    ScrollTrigger, pero con el mismo efecto visual). En móvil (<769px) se
+    desactiva el JS y queda como scroll horizontal nativo con
+    `scroll-snap`, cero JS de "jacking" — igual estrategia de fallback que
+    pedía el spec original.
+  - Ambas usan solo los 3 productos reales (no se duplicó ningún producto
+    para "rellenar" la galería, a diferencia del spec original que
+    duplicaba productos ficticios).
+- **Nuevos archivos de assets dedicados** (en vez de tocar `base.css` /
+  `theme.js` directamente, para minimizar riesgo de una subida completa de
+  archivos grandes): `assets/gift-scroll.css` y `assets/gift-scroll.js`,
+  enlazados globalmente desde `layout/theme.liquid` junto a `base.css` /
+  `theme.js`.
+- Paleta: se reutilizan las variables CSS globales del tema
+  (`--color-accent`, `--color-background-secondary`, etc.) en vez de
+  introducir la paleta negro/dorado del spec original — así la caja y el
+  acento italic ("consentirte", "tuya") seguirán la marca RADIANT MX
+  (azul) y cualquier cambio de color global del tema los actualiza también.
+- `templates/index.json`: se quitaron las secciones `hero`, `trust`
+  (icon-row) y `spotlight` (image-with-text) del inicio; en su lugar,
+  `order` ahora empieza con `["gift-box", "gift-gallery", "featured",
+  "features", "testimonials", "faq", "newsletter"]`.
+- **Bug encontrado y corregido durante la subida**: Shopify rechaza el
+  `name` del `{% schema %}` de una sección si supera 25 caracteres — el
+  nombre inicial "Galería horizontal (scroll)" (27 caracteres) fue
+  rechazado; se acortó a "Galería horizontal".
+- Subido a Shopify vía `themeFilesUpsert` al tema correcto
+  (`190280695842` / "✅ RADIANT MX - PUBLICAR ESTE"): `layout/theme.liquid`,
+  `sections/gift-box-scroll.liquid`, `sections/gift-gallery-scroll.liquid`,
+  `assets/gift-scroll.css`, `assets/gift-scroll.js`, `templates/index.json`.
+  Tema verificado sin errores (`processing: false, processingFailed: false`).
+- **No verificado visualmente**: como en rondas anteriores, este entorno no
+  tiene acceso de red para cargar la tienda real en un navegador — la
+  verificación es solo por ausencia de errores de Shopify y revisión
+  estática del código. Conviene que el usuario confirme visualmente el
+  efecto de scroll una vez publicado.
+
 ## Pendiente / no hecho en esta sesión
 - [ ] **URGENTE**: el usuario debe publicar el tema llamado exactamente
       **"✅ RADIANT MX - PUBLICAR ESTE"** (`190280695842`) desde el panel —
